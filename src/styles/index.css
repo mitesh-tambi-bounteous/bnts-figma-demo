@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/outfit';
+@import '@fontsource-variable/figtree';
+
+/* Terracotta consumer-mobile scope, distilled from Figma frame 88:72. */
+:root,
+[data-theme='food-order-light'] {
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-2: #FAFAF9;
+  --border: #F3F4F6;
+  --fg: #111827;
+  --muted: #4B5563;
+  --faint: #9CA3AF;
+  --brand: #E2725B;
+  --on-brand: #FFFFFF;
+  --rating: #FBBF24;
+  --brand-ring: #FDF2EE;
+
+  --radius-badge: 6px;
+  --radius-control: 12px;
+  --radius-field: 16px;
+  --radius-card: 24px;
+
+  --shadow-card: 0 6px 16px rgba(0, 0, 0, 0.031373);
+  --shadow-brand: 0 4px 12px rgba(226, 114, 91, 0.164706);
+
+  --font-display: 'Outfit Variable', system-ui, sans-serif;
+  --font-body: 'Figtree Variable', system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-brand: var(--brand);
+  --color-on-brand: var(--on-brand);
+  --color-rating: var(--rating);
+  --color-brand-ring: var(--brand-ring);
+
+  --radius-badge: var(--radius-badge);
+  --radius-control: var(--radius-control);
+  --radius-field: var(--radius-field);
+  --radius-card: var(--radius-card);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-brand: var(--shadow-brand);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Horizontal rails scroll but never show a bar (Figma: clipsContent, no scrollbar). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* promo-banner scrim, node 89:230. */
+.promo-scrim {
+  background-image: linear-gradient(
+    90deg,
+    rgba(17, 24, 39, 0.902) 0%,
+    rgba(17, 24, 39, 0.667) 60%,
+    rgba(226, 114, 91, 0.4) 100%
+  );
+}
