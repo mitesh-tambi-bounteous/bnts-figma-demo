@@ -7,8 +7,17 @@ export interface Category {
   icon: LucideIcon
 }
 
+/**
+ * The restaurants this screen ships.
+ *
+ * Every id-keyed map elsewhere (notably `RestaurantCard`'s Figma node map) is a
+ * `Record<RestaurantId, …>`, so widening this union forces those maps to grow with it at
+ * compile time rather than failing at render.
+ */
+export type RestaurantId = 'bella-cucina' | 'sakura-premium-sushi'
+
 export interface Restaurant {
-  id: string
+  id: RestaurantId
   name: string
   description: string
   cuisines: string[]

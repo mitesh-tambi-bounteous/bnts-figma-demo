@@ -2,11 +2,42 @@ import { Clock, Heart } from 'lucide-react'
 import { GalleryStrip } from './GalleryStrip'
 import { Pill } from './Pill'
 import { RatingStat } from './RatingStat'
-import type { Restaurant } from '../data/home'
+import type { Restaurant, RestaurantId } from '../data/home'
 
-/** Figma node ids, per card instance: [Bella Cucina 89:243, Sakura Premium Sushi 89:281]. */
-const CARD_NODES = [
-  {
+/** The Figma node ids one restaurant card stamps onto its DOM. */
+interface CardNodes {
+  card: string
+  gallery: string
+  body: string
+  description: string
+  tagsRow: string
+  tags: readonly string[]
+  tagLabels: readonly string[]
+  headerBlock: string
+  name: string
+  cuisine: string
+  metaRow: string
+  rating: string
+  ratingValue: string
+  ratingCount: string
+  deliveryGroup: string
+  deliveryBadge: string
+  deliveryTime: string
+  deliveryFee: string
+  line: string
+  footer: string
+  orderButton: string
+  orderLabel: string
+  saveButton: string
+}
+
+/**
+ * Figma node ids per restaurant, keyed by the stable `Restaurant.id` — never by list
+ * position, so a card stamps its own ids wherever it is rendered. Typing this as a total
+ * `Record<RestaurantId, …>` makes a missing entry a compile error, not a render crash.
+ */
+export const CARD_NODES: Record<RestaurantId, CardNodes> = {
+  'bella-cucina': {
     card: '89:243', gallery: '89:244', body: '89:248', description: '89:249',
     tagsRow: '89:250', tags: ['89:251', '89:253', '89:255', '89:257'],
     tagLabels: ['89:252', '89:254', '89:256', '89:258'],
@@ -16,7 +47,7 @@ const CARD_NODES = [
     deliveryFee: '89:273', line: '89:274', footer: '89:275',
     orderButton: '89:276', orderLabel: '89:277', saveButton: '89:278',
   },
-  {
+  'sakura-premium-sushi': {
     card: '89:281', gallery: '89:282', body: '89:286', description: '89:287',
     tagsRow: '89:288', tags: ['89:289', '89:291', '89:293', '89:295'],
     tagLabels: ['89:290', '89:292', '89:294', '89:296'],
@@ -26,7 +57,7 @@ const CARD_NODES = [
     deliveryFee: '89:311', line: '89:312', footer: '89:313',
     orderButton: '89:314', orderLabel: '89:315', saveButton: '89:316',
   },
-] as const
+}
 
 /**
  * Figma 89:243 / 89:281 — gallery, copy, meta and actions.
@@ -36,8 +67,8 @@ const CARD_NODES = [
  * gallery = 495. Card 2 differs only in its 3-line description (63) → 474. Both fall out
  * of the flow; no height is hard-coded.
  */
-export function RestaurantCard({ restaurant, index }: { restaurant: Restaurant; index: 0 | 1 }) {
-  const n = CARD_NODES[index]
+export function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
+  const n = CARD_NODES[restaurant.id]
 
   return (
     <article

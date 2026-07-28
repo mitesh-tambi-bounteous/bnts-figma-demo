@@ -21,4 +21,14 @@ describe('RestaurantFeed', () => {
       'Sakura Premium Sushi',
     ])
   })
+
+  it('stamps each card with its own Figma node ids regardless of list position', () => {
+    const { container } = render(<RestaurantFeed restaurants={[...restaurants].reverse()} />)
+    const stamped = [...container.querySelectorAll('article[data-node]')].map((el) =>
+      el.getAttribute('data-node'),
+    )
+    // Sakura is 89:281 and Bella is 89:243 wherever they appear in the list.
+    expect(stamped).toEqual(['89:281', '89:243'])
+  })
+
 })

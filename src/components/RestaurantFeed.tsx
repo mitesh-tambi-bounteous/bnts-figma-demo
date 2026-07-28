@@ -22,8 +22,8 @@ export function RestaurantFeed({ restaurants }: { restaurants: readonly Restaura
           See All
         </button>
       </div>
-      {restaurants.map((restaurant, i) => (
-        <RestaurantCard key={restaurant.id} restaurant={restaurant} index={i as 0 | 1} />
+      {restaurants.map((restaurant) => (
+        <RestaurantCard key={restaurant.id} restaurant={restaurant} />
       ))}
     </section>
   )

@@ -3,3 +3,11 @@ dist/
 test-results/
 playwright-report/
 *.tsbuildinfo
+
+# Local environment — commit .env.example instead.
+.env
+
+# Agent/platform scaffolding, not product source.
+.arc/
+.arc-plan.md
+.arc-base-commit

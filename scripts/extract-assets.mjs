@@ -165,8 +165,16 @@ async function main() {
       while (end < W && masked[y * W + end]) end++
       const left = x - 1
       const right = end
+      // A run spanning the full row has no unmasked pixel to interpolate from; leave it
+      // to the relaxation pass rather than seeding from a masked neighbour.
+      if (left < 0 && right >= W) {
+        x = end
+        continue
+      }
       for (let k = 0; k < 3; k++) {
-        const a = left >= 0 ? rgb[(y * W + left) * 3 + k] : rgb[(y * W + (right % W)) * 3 + k]
+        // Where a run touches an edge, mirror the one neighbour it does have.
+        const a =
+          left >= 0 ? rgb[(y * W + left) * 3 + k] : rgb[(y * W + right) * 3 + k]
         const b = right < W ? rgb[(y * W + right) * 3 + k] : a
         for (let i = x; i < end; i++) {
           const t = (i - x + 1) / (end - x + 1)

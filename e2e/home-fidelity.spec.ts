@@ -484,4 +484,21 @@ test.describe('AC-1 — the loaded page matches the frame', () => {
     )
     expect(overflow).toBeLessThanOrEqual(0)
   })
+
+  test('fits phones narrower than the frame and centres on desktop', async ({ page }) => {
+    // iPhone SE / 12 mini / 13 mini are 375 CSS px — narrower than the 390px frame.
+    await page.setViewportSize({ width: 375, height: 1461 })
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - window.innerWidth,
+    )
+    expect(overflow, 'a 375px device must not scroll horizontally').toBeLessThanOrEqual(0)
+
+    await page.setViewportSize({ width: 1440, height: 1461 })
+    const box = (await page.locator('[data-node="88:72"]').boundingBox())!
+    expect(box.width, 'the frame keeps its 390px design width on desktop').toBe(390)
+    expect(
+      Math.abs(box.x - (1440 - 390) / 2),
+      'the frame is centred rather than pinned left',
+    ).toBeLessThanOrEqual(1)
+  })
 })
