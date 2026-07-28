@@ -1,0 +1,399 @@
+{
+  "frame": {
+    "name": "food-order-home",
+    "file_key": "gncZfQWGgsYvYUSXo5XvTW",
+    "node_id": "88:72",
+    "width": 390.0,
+    "height": 1461.0
+  },
+  "tokens": {
+    "_note": "The frame is a light, terracotta-brand consumer mobile surface. arc's tokens.css is a dark, indigo-brand developer cockpit. None of the frame's literal values exist in tokens.css today — the mapping below pairs each Figma value with the tokens.css SEMANTIC SLOT it belongs in, so this screen should ship as a new theme scope (e.g. [data-theme=\"food-order-light\"]) that re-binds those slots rather than inventing parallel variable names.",
+    "theme_scope_proposal": "[data-theme=\"food-order-light\"]",
+    "colors": [
+      {
+        "figma_hex": "#111827",
+        "token": "--fg",
+        "role": "Primary text: location name, category label (inactive), restaurant name, rating value, status-bar glyphs",
+        "figma_nodes": ["89:183", "89:194", "89:213", "89:241", "89:260", "89:266"],
+        "exists_in_tokens_css": false,
+        "notes": "tokens.css --fg is #e7ecf5 (arc-dark) / #0e1422 (arc-light). Closest existing slot; re-bind under the new theme scope."
+      },
+      {
+        "figma_hex": "#4B5563",
+        "token": "--muted",
+        "role": "Secondary text: card description, tag text, delivery-time text, unsaved heart icon",
+        "figma_nodes": ["89:249", "89:252", "89:272", "89:318"],
+        "exists_in_tokens_css": false
+      },
+      {
+        "figma_hex": "#9CA3AF",
+        "token": "--faint",
+        "role": "Tertiary text: 'DELIVERING TO' eyebrow, search placeholder, review count",
+        "figma_nodes": ["89:190", "89:202", "89:267"],
+        "exists_in_tokens_css": false
+      },
+      {
+        "figma_hex": "#E2725B",
+        "token": "--brand",
+        "role": "Terracotta brand: active pill, promo badge, Order Now button, See All, cuisine label, pin/chevron/filter icons, saved heart",
+        "figma_nodes": ["89:206", "89:232", "89:242", "89:261", "89:276", "89:280"],
+        "exists_in_tokens_css": false,
+        "notes": "tokens.css --brand is #7c8cff. This is the single most important re-bind."
+      },
+      {
+        "figma_hex": "#C85A42",
+        "token": "--brand-strong",
+        "role": "Derived hover/pressed for brand surfaces",
+        "figma_nodes": [],
+        "exists_in_tokens_css": false,
+        "notes": "NOT present in the frame — no hover/pressed state was designed. Value proposed by arc (brand darkened ~10%). Needs designer confirmation."
+      },
+      {
+        "figma_hex": "#FFFFFF",
+        "token": "--surface / --on-brand",
+        "role": "Card background, page background, text on brand fills",
+        "figma_nodes": ["88:72", "89:243", "89:281", "89:209", "89:277"],
+        "exists_in_tokens_css": true,
+        "notes": "--on-brand already resolves to #ffffff in arc-light."
+      },
+      {
+        "figma_hex": "#FAFAF9",
+        "token": "--surface-2",
+        "role": "Subtle fill: search input, inactive category pill, tag pill, delivery badge",
+        "figma_nodes": ["89:199", "89:210", "89:251", "89:269"],
+        "exists_in_tokens_css": false
+      },
+      {
+        "figma_hex": "#F3F4F6",
+        "token": "--border",
+        "role": "Hairline borders: search input, inactive pills, tags, save button, card divider Line",
+        "figma_nodes": ["89:199", "89:210", "89:251", "89:274", "89:278"],
+        "exists_in_tokens_css": false,
+        "notes": "MISSING from the frame's declared tokens.colors list even though it is the most-used stroke in the design. Recovered from raw fill data (rgb 0.953/0.957/0.965)."
+      },
+      {
+        "figma_hex": "#FBBF24",
+        "token": "--warn",
+        "role": "Rating star fill only",
+        "figma_nodes": ["89:265", "89:303"],
+        "exists_in_tokens_css": false,
+        "notes": "Semantically this is an amber accent, not a warning. Consider a dedicated --rating slot rather than overloading --warn."
+      },
+      {
+        "figma_hex": "#FDF2EE",
+        "token": "--brand-ring (new)",
+        "role": "2px inside stroke around the header avatar",
+        "figma_nodes": ["89:197"],
+        "exists_in_tokens_css": false,
+        "notes": "MISSING from the frame's declared tokens.colors list. Recovered from raw stroke data (rgb 0.992/0.949/0.933). It is a brand tint — could be expressed as color-mix(in srgb, var(--brand) 12%, white)."
+      }
+    ],
+    "typography": {
+      "families": [
+        {
+          "figma_family": "Outfit",
+          "token": "--font-display-face",
+          "weights_used": [700, 800, 900],
+          "role": "Display: location name, promo headline, '50%', section heading, restaurant name",
+          "exists_in_tokens_css": false,
+          "notes": "tokens.css binds --font-display-face to 'Space Grotesk'. Must be overridden for this surface; Outfit is on Google Fonts."
+        },
+        {
+          "figma_family": "Figtree",
+          "token": "--font-body",
+          "weights_used": [400, 500, 600, 700, 800],
+          "role": "Everything else",
+          "exists_in_tokens_css": false,
+          "notes": "tokens.css binds --font-body to 'Inter'. Figtree is on Google Fonts."
+        }
+      ],
+      "scale": [
+        {"px": 11, "line_height": 13.2, "weight": 800, "family": "Figtree", "usage": "promo badge 'WEEKEND SPECIAL'", "utility": "text-[11px]"},
+        {"px": 12, "line_height": 14.4, "weight": "500 / 600 / 700", "family": "Figtree", "usage": "eyebrow (uppercase), tags, delivery time, 'Free Delivery', 'OFF NOW'", "utility": "text-[12px]"},
+        {"px": 13, "line_height": 15.6, "weight": "400 / 500", "family": "Figtree", "usage": "cuisine label, review count", "utility": "text-sm"},
+        {"px": 14, "line_height": "16.8 / 21", "weight": "400 / 600 / 700", "family": "Figtree", "usage": "search placeholder, category labels, rating value, 'See All', card description (21px leading)", "utility": "text-base"},
+        {"px": 15, "line_height": 18, "weight": "600 / 700", "family": "Figtree", "usage": "status-bar clock, 'Order Now'", "utility": "text-[15px]"},
+        {"px": 16, "line_height": 20.16, "weight": 700, "family": "Outfit", "usage": "location name", "utility": "text-lg"},
+        {"px": 20, "line_height": 25.2, "weight": 800, "family": "Outfit", "usage": "'Popular Near You', restaurant name", "utility": "text-xl"},
+        {"px": 22, "line_height": 27.72, "weight": 800, "family": "Outfit", "usage": "promo headline", "utility": "text-[22px] (new)"},
+        {"px": 32, "line_height": 40.32, "weight": 900, "family": "Outfit", "usage": "'50%'", "utility": "text-[32px] (new)"}
+      ]
+    },
+    "radii": [
+      {"px": 6, "token": "--radius-badge (new)", "usage": "promo badge, delivery badge", "notes": "tokens.css has no 6px slot (--radius-control is 7px — close enough to reuse)."},
+      {"px": 12, "token": "--radius-control", "usage": "Order Now button, save button", "notes": "tokens.css --radius-control is 7px; needs re-bind to 12px for this surface."},
+      {"px": 16, "token": "--radius-field (new)", "usage": "search input"},
+      {"px": 24, "token": "--radius-card", "usage": "restaurant cards, promo banner", "notes": "tokens.css --radius-card is 10px; needs re-bind to 24px."},
+      {"px": 100, "token": "rounded-full", "usage": "category pills, tags", "notes": "utility already exists in prototype-utils.css (9999px)."},
+      {"px": 20, "token": "rounded-full", "usage": "avatar (40px box, 20px radius = circle)"}
+    ],
+    "spacing": {
+      "scale_px": [2, 4, 6, 8, 10, 12, 16, 20, 24],
+      "page_gutter": 20,
+      "notes": "Consistent 4px-based scale. Page gutter is 20px everywhere except the status bar, which uses 24px."
+    },
+    "shadows": [
+      {"token": "--shadow-card", "value": "0 6px 16px rgba(0, 0, 0, 0.031)", "usage": "restaurant cards", "exists_in_tokens_css": true, "notes": "Slot exists; value must be re-bound (arc's is a dark-surface shadow)."},
+      {"token": "--shadow-brand (new)", "value": "0 4px 12px rgba(226, 114, 91, 0.165)", "usage": "Order Now button", "exists_in_tokens_css": false}
+    ],
+    "gradients": [
+      {
+        "name": "promo-scrim",
+        "value": "linear-gradient(90deg, rgba(17,24,39,0.902) 0%, rgba(17,24,39,0.667) 60%, rgba(226,114,91,0.4) 100%)",
+        "usage": "Layered over the promo-banner photo (imageRef 0785bd1b…) to keep white text legible",
+        "figma_node": "89:230"
+      }
+    ],
+    "icons": {
+      "library": "lucide-react (inferred)",
+      "confidence": "high — every Figma icon frame name is an exact lucide export name",
+      "names": ["map-pin", "chevron-down", "search", "sliders-horizontal", "pizza", "shrimp", "beef", "leaf", "cookie", "flame", "star", "clock", "heart"],
+      "sizes_px": [12, 14, 16, 18],
+      "stroke_width": 2,
+      "notes": "Category and nav icons are 2px stroked outlines; star / clock / heart are solid fills."
+    },
+    "images": [
+      {"imageRef": "9adbc80d436ac9e2a5fb8f68a8b758c035efb23d", "usage": "header avatar", "figma_node": "89:197"},
+      {"imageRef": "0785bd1b67f868ff4b91caf14067284ec1ef0f1d", "usage": "promo banner photo", "figma_node": "89:230"},
+      {"imageRef": "23d4fb9833b0582a31e5492f1222d619383e9a52", "usage": "Bella Cucina gallery 1", "figma_node": "89:245"},
+      {"imageRef": "8a20118b5dd78464ab87fb34836083f6cefdea9b", "usage": "Bella Cucina gallery 2", "figma_node": "89:246"},
+      {"imageRef": "f08c0a01f1972b5c93c22c54b91a4525060d5e1a", "usage": "Bella Cucina gallery 3", "figma_node": "89:247"},
+      {"imageRef": "40782500ec7495c3304776a88b2c9d29a79f3804", "usage": "Sakura gallery 1", "figma_node": "89:283"},
+      {"imageRef": "cba3cdafa65f80b81b4ea29b3b58ab0fd6e800a8", "usage": "Sakura gallery 2", "figma_node": "89:284"},
+      {"imageRef": "bd108c9d88b49952db18486acd90224ea3d1e3e0", "usage": "Sakura gallery 3", "figma_node": "89:285"}
+    ]
+  },
+  "component_map": [
+    {
+      "figma_node": "status-bar (89:182)",
+      "code_component": "BrowserFrame",
+      "props": {"variant": "mobile", "statusBar": true, "time": "9:41", "width": 390},
+      "status": "existing",
+      "notes": "Device chrome, not product UI. browser-frame is the catalogue's only viewport-shell primitive; it needs a `mobile` variant (iOS clock left, signal/wifi/battery right, 44px tall, 24px gutters). In production this row is drawn by the OS — render it only in prototypes/screenshots."
+    },
+    {
+      "figma_node": "header (89:188)",
+      "code_component": "— (layout only)",
+      "props": {"className": "flex items-center justify-between px-5 pt-3 pb-4"},
+      "status": "no component",
+      "notes": "Plain flex row. Figma: HORIZONTAL / SPACE_BETWEEN / CENTER, padding 12 20 16 20."
+    },
+    {
+      "figma_node": "'Delivering to' eyebrow (89:190)",
+      "code_component": "Label",
+      "props": {"size": "xs", "className": "uppercase tracking-wide text-faint"},
+      "status": "existing",
+      "notes": "Figma stores characters as 'Delivering to' with textCase: UPPER — render the mixed-case string and uppercase via CSS so the accessible name stays readable."
+    },
+    {
+      "figma_node": "location-selector trigger (89:191 → 89:329 pin, 89:194 text, 89:332 chevron)",
+      "code_component": "Combobox",
+      "props": {"value": "West Village, NY", "leadingIcon": "MapPin", "trailingIcon": "ChevronDown", "variant": "bare", "options": "[]"},
+      "status": "existing",
+      "notes": "Semantically a location picker. Needs a `bare`/ghost trigger variant — the Figma trigger has no background, border, or padding, just icon + 16px Outfit Bold text + chevron with 4px gaps. The option list itself is NOT in this frame."
+    },
+    {
+      "figma_node": "avatar (89:197)",
+      "code_component": "Avatar",
+      "props": {"src": "imageRef:9adbc80d…", "size": 40, "alt": "Your profile", "ring": true},
+      "status": "NEW",
+      "notes": "No avatar primitive in the catalogue. 40×40, circular, object-fit cover, 2px inside ring in #FDF2EE. Frame has no fallback/initials state designed — needed before build."
+    },
+    {
+      "figma_node": "search-input (89:199)",
+      "code_component": "Input",
+      "props": {"placeholder": "Craving pizza, sushi, or burgers?", "leadingIcon": "Search", "trailingSlot": "<Button variant=\"ghost\" size=\"icon\">", "size": "lg", "readOnly": true},
+      "status": "existing",
+      "notes": "48px tall, radius 16, --surface-2 fill, --border hairline, 16px side padding, 12px gap. Needs leading/trailing adornment slots if Input doesn't have them. In the frame this is a static row — on a home screen it usually navigates to a search view rather than accepting inline typing; confirm intended behaviour."
+    },
+    {
+      "figma_node": "search filter icon (89:203 → 89:338 sliders)",
+      "code_component": "Button",
+      "props": {"variant": "ghost", "size": "icon", "icon": "SlidersHorizontal", "aria-label": "Filters"},
+      "status": "existing",
+      "notes": "18px brand-coloured icon. Rendered with no hit-target padding in Figma (18×18) — enlarge to ≥44×44 for touch without changing visual size."
+    },
+    {
+      "figma_node": "categories-carousel (89:205)",
+      "code_component": "CategoryScroller",
+      "props": {"items": "Category[]", "selectedId": "pizza", "onSelect": "(id) => void"},
+      "status": "NEW",
+      "notes": "Thin wrapper: horizontal overflow-x scroller, 8px gap, 20px left padding, 24px bottom padding, clipsContent, no visible scrollbar. Could stay as plain markup — proposed as a component only because the scroll-snap + selection state repeats. `tabs` is the wrong primitive (these are filters, not view switches)."
+    },
+    {
+      "figma_node": "category-pill · selected (89:206 'Pizza')",
+      "code_component": "Chip",
+      "props": {"variant": "brand", "selected": true, "icon": "Pizza", "children": "Pizza"},
+      "status": "existing",
+      "notes": "Brand fill, white icon + white 14px SemiBold label, radius 100, padding 10/16, 8px gap. Existing .chip is 10px uppercase mono — this needs a larger `filter` size (14px sentence-case body font)."
+    },
+    {
+      "figma_node": "category-pill · unselected (89:210 Sushi, 89:214 Burgers, 89:218 Healthy, 89:222 Desserts, 89:226 Indian)",
+      "code_component": "Chip",
+      "props": {"variant": "muted", "selected": false, "icon": "Shrimp | Beef | Leaf | Cookie | Flame"},
+      "status": "existing",
+      "notes": "--surface-2 fill, --border hairline, brand-coloured icon, --fg label. Same size variant as above. Six categories total; only 3.5 fit in the 390px viewport, so horizontal scroll is required, not optional."
+    },
+    {
+      "figma_node": "promo-banner (89:230)",
+      "code_component": "Card",
+      "props": {"variant": "media", "backgroundImage": "imageRef:0785bd1b…", "overlay": "promo-scrim", "radius": 24, "height": 130},
+      "status": "existing (needs variant)",
+      "notes": "Card must support a photo fill + gradient scrim + light-on-dark content. Layout is SPACE_BETWEEN: copy block left (200px fixed), '50% / OFF NOW' block right. No `href`/press target is defined in the frame — confirm whether the whole banner is tappable."
+    },
+    {
+      "figma_node": "promo badge 'WEEKEND SPECIAL' (89:232)",
+      "code_component": "Badge",
+      "props": {"variant": "brand", "size": "xs", "children": "WEEKEND SPECIAL"},
+      "status": "existing",
+      "notes": "Solid brand fill, white 11px ExtraBold, radius 6, padding 4/8."
+    },
+    {
+      "figma_node": "spacer (89:238)",
+      "code_component": "— (drop)",
+      "props": {},
+      "status": "no component",
+      "notes": "AMBIGUITY: a 390×145 empty frame at y=70–215 that OVERLAPS promo-banner (y=53–183). It is not a sibling gap — it is a Figma canvas artifact. Do not translate to markup; the real spacing between the banner and the feed is the section's own padding."
+    },
+    {
+      "figma_node": "section header row (89:240)",
+      "code_component": "— (layout only)",
+      "props": {"className": "flex items-center justify-between"},
+      "status": "no component"
+    },
+    {
+      "figma_node": "'Popular Near You' (89:241)",
+      "code_component": "— (h2)",
+      "props": {"className": "font-display text-xl font-extrabold"},
+      "status": "no component",
+      "notes": "Outfit ExtraBold 20/25.2. Should be the section's <h2>."
+    },
+    {
+      "figma_node": "'See All' (89:242)",
+      "code_component": "Button",
+      "props": {"variant": "link", "size": "sm", "children": "See All"},
+      "status": "existing",
+      "notes": "Brand-coloured Figtree Bold 14, no chrome. Destination not specified in the frame."
+    },
+    {
+      "figma_node": "restaurant-card (89:243 Bella Cucina, 89:281 Sakura Premium Sushi)",
+      "code_component": "Card",
+      "props": {"padding": "none", "radius": 24, "clip": true, "shadow": "--shadow-card"},
+      "status": "existing",
+      "notes": "White surface, radius 24, clipsContent (gallery bleeds to the edge), shadow 0 6px 16px rgba(0,0,0,.031), NO border. Body padding is 20 all round with 16px stack gap."
+    },
+    {
+      "figma_node": "gallery-strip (89:244, 89:282)",
+      "code_component": "GalleryStrip",
+      "props": {"images": "string[3]", "height": 120, "gap": 2},
+      "status": "NEW",
+      "notes": "Three equal-width images (115.33px each) with 2px gutters, object-fit cover, top corners clipped by the parent card. Exactly 3 images in both instances — confirm whether the count is fixed or the component must handle 1/2/4+."
+    },
+    {
+      "figma_node": "description (89:249, 89:287)",
+      "code_component": "— (p)",
+      "props": {"className": "text-base text-muted leading-[21px]"},
+      "status": "no component",
+      "notes": "14px / 21px (150%) Figtree Regular. No line-clamp in the frame — card 1 runs 4 lines, card 2 runs 3. Confirm whether long copy should clamp."
+    },
+    {
+      "figma_node": "tags-row (89:250, 89:288)",
+      "code_component": "— (layout only)",
+      "props": {"className": "flex flex-wrap gap-2"},
+      "status": "no component",
+      "notes": "Figma layoutWrap: WRAP with 8px on both axes. Both instances happen to wrap to 2 rows."
+    },
+    {
+      "figma_node": "tag (89:251 #Italian, 89:253 #Gluten-Free, 89:255 #Family-Friendly, 89:257 #Takeout, 89:289 #Japanese, 89:291 #Organic, 89:293 #Premium, 89:295 #Seafood)",
+      "code_component": "Chip",
+      "props": {"variant": "muted", "size": "sm", "interactive": false, "children": "#Italian"},
+      "status": "existing",
+      "notes": "Static, non-interactive: --surface-2 fill, --border hairline, --muted 12px Medium text, radius 100, padding 6/10. Visually identical to the unselected category pill but smaller and without an icon — same Chip, different size."
+    },
+    {
+      "figma_node": "header-block (89:259, 89:297)",
+      "code_component": "— (layout only)",
+      "props": {"className": "flex flex-col gap-1"},
+      "status": "no component",
+      "notes": "ORDERING CONCERN: in the Figma child order this block sits AFTER description and tags-row, so the restaurant name — the card's heading — is announced third. Recommend a visually-identical CSS `order` swap so the DOM leads with the name."
+    },
+    {
+      "figma_node": "restaurant-name (89:260 'Bella Cucina', 89:298 'Sakura Premium Sushi')",
+      "code_component": "— (h3)",
+      "props": {"className": "font-display text-xl font-extrabold"},
+      "status": "no component"
+    },
+    {
+      "figma_node": "cuisine-label (89:261, 89:299)",
+      "code_component": "— (p)",
+      "props": {"className": "text-sm font-medium text-brand"},
+      "status": "no component",
+      "notes": "Figtree Medium 13, brand colour, middot-separated: 'Italian · Pizza · Pasta'."
+    },
+    {
+      "figma_node": "rating-group (89:263, 89:301)",
+      "code_component": "RatingStat",
+      "props": {"value": 4.7, "count": "2.4k", "icon": "Star"},
+      "status": "NEW",
+      "notes": "Small composite: 14px filled amber star + 14px Bold value + 13px --faint '(2.4k)' with 6px gaps. Could stay inline markup; proposed as a component because it will recur on the restaurant detail screen. Only a single filled star is drawn — this is a numeric rating, not a 5-star widget."
+    },
+    {
+      "figma_node": "delivery-badge (89:269 '25–35 min', 89:307 '30–40 min')",
+      "code_component": "Badge",
+      "props": {"variant": "muted", "icon": "Clock", "children": "25–35 min"},
+      "status": "existing",
+      "notes": "--surface-2 fill, no border, radius 6, padding 4/8, 6px gap, 12px SemiBold --muted text. Note the en-dash (–) in the range, not a hyphen."
+    },
+    {
+      "figma_node": "delivery-price (89:273 'Free Delivery', 89:311 '$2.99 Delivery')",
+      "code_component": "— (span)",
+      "props": {"className": "text-[12px] font-semibold text-brand"},
+      "status": "no component",
+      "notes": "Brand-coloured text with no chrome — deliberately NOT a Badge. Free and paid delivery use the identical treatment, so 'free' carries no extra emphasis; flag to the designer if that's unintended."
+    },
+    {
+      "figma_node": "Line divider (89:274, 89:312)",
+      "code_component": "— (hr)",
+      "props": {"className": "border-t border-border"},
+      "status": "no component",
+      "notes": "Figma LINE node, 1px, --border. Decorative — use role=\"presentation\"."
+    },
+    {
+      "figma_node": "order-button (89:276, 89:314)",
+      "code_component": "Button",
+      "props": {"variant": "primary", "size": "lg", "children": "Order Now", "className": "flex-1"},
+      "status": "existing",
+      "notes": "layoutGrow 1 (fills remaining width), 44px tall, radius 12, brand fill, white 15px Bold, shadow 0 4px 12px rgba(226,114,91,.165). No hover/pressed/disabled/loading states are designed."
+    },
+    {
+      "figma_node": "save-button (89:278 saved, 89:316 unsaved)",
+      "code_component": "Button",
+      "props": {"variant": "outline", "size": "icon", "icon": "Heart", "pressed": true, "aria-label": "Save restaurant"},
+      "status": "existing",
+      "notes": "44×44, radius 12, --border hairline, transparent fill. TWO STATES are drawn: card 1's heart is filled brand #E2725B (saved), card 2's is filled --muted #4B5563 (unsaved). Needs aria-pressed; the unsaved icon should arguably be an outline heart, not a grey solid — worth confirming."
+    },
+    {
+      "figma_node": "icon-container (89:192, 89:195, 89:200, 89:203, 89:207, 89:264, 89:270, 89:279, …)",
+      "code_component": "Icon (lucide-react)",
+      "props": {"size": "12 | 14 | 16 | 18", "strokeWidth": 2},
+      "status": "external dependency",
+      "notes": "Every icon is wrapped in a centred fixed-size frame. Collapse these wrappers into the icon's own size prop — do not reproduce them as DOM nodes. Adds a lucide-react dependency if the project doesn't already have one."
+    }
+  ],
+  "summary": {
+    "mapped_to_existing_components": 15,
+    "new_components_proposed": 4,
+    "plain_markup_no_component": 11,
+    "external_dependencies": 1,
+    "new_components": ["Avatar", "CategoryScroller", "GalleryStrip", "RatingStat"],
+    "existing_components_used": ["BrowserFrame", "Label", "Combobox", "Input", "Button", "Chip", "Card", "Badge"],
+    "catalogue_components_needing_new_variants": [
+      "browser-frame → mobile/status-bar variant",
+      "chip → filter size (14px, icon slot) and sm static size",
+      "card → media variant (photo fill + gradient scrim)",
+      "input → leading/trailing adornment slots",
+      "combobox → bare/ghost trigger",
+      "button → link and outline-icon variants"
+    ]
+  }
+}
