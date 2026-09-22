@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FD-STORY-005 — Frontend Calculator UI</title>
+  <style>
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #1a1a1a; /** Primary body text color on light backgrounds. */
+  --color-bg: #ffffff; /** Default page/surface background color. */
+  --color-primary: #2563eb; /** Brand accent color used for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color placed on top of color-primary surfaces. */
+  --color-border: #d1d5db; /** Default border color for cards, inputs, and dividers. */
+  --color-surface: #f9fafb; /** Slightly raised surface color, e.g. cards on top of the page background. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Base spacing step, used for default gaps. */
+  --space-3: 16px; /** Medium spacing step, used for component padding. */
+  --space-4: 24px; /** Large spacing step, used for section-level spacing. */
+  --radius-sm: 4px; /** Corner radius for small controls like chips. */
+  --radius-md: 8px; /** Corner radius for standard controls like buttons and inputs. */
+  --radius-lg: 16px; /** Corner radius for larger surfaces like cards. */
+  --font-size-sm: 12px; /** Small text size, used for captions and chips. */
+  --font-size-md: 16px; /** Default body text size. */
+  --font-size-lg: 24px; /** Heading text size. */
+  --font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif; /** Default typeface stack for all UI text. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --border-width-default: 1px; /** Default border thickness for cards, inputs, and dividers. */
+  --shadow-card: 0px 2px 8px 0px rgb(0% 0% 0% / 0.08); /** Soft elevation shadow used under cards. */
+  --button-primary-background: var(--color-primary); /** Background color for the primary button variant. */
+  --button-primary-foreground: var(--color-primary-fg); /** Text color for the primary button variant. */
+  --button-primary-radius: var(--radius-md); /** Corner radius for the primary button variant. */
+  --button-primary-padding-block: var(--space-2); /** Vertical padding for the primary button variant. */
+  --button-primary-padding-inline: var(--space-3); /** Horizontal padding for the primary button variant. */
+  --button-secondary-background: var(--color-bg); /** Background color for the secondary button variant. */
+  --button-secondary-foreground: var(--color-fg); /** Text color for the secondary button variant. */
+  --button-secondary-border: var(--color-border); /** Border color for the secondary button variant. */
+  --card-default-background: var(--color-surface); /** Background color for the default card variant. */
+  --card-default-border: var(--color-border); /** Border color for the default card variant. */
+  --card-default-radius: var(--radius-lg); /** Corner radius for the default card variant. */
+  --card-default-padding: var(--space-4); /** Inner padding for the default card variant. */
+}
+
+</style>
+  <style>
+/* Prototype utility & component classes built entirely from design tokens. */
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-md {
+  font-size: var(--font-size-md);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-body {
+  font-family: var(--font-family-base);
+  color: var(--color-fg);
+  font-weight: var(--font-weight-regular);
+}
+
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+
+.surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  border-width: var(--border-width-default);
+  border-style: solid;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+  border-color: var(--button-primary-background);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-color: var(--button-secondary-border);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+}
+
+/* Card */
+
+.card {
+  background-color: var(--card-default-background);
+  border: var(--border-width-default) solid var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--card-default-padding);
+  box-shadow: var(--shadow-card);
+}
+
+.card-title {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fg);
+  margin: 0;
+}
+
+/* Chip */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+}
+
+.chip-outline {
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+}
+
+/* Form controls */
+
+.input {
+  display: block;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+}
+
+.input:focus {
+  outline: var(--border-width-default) solid var(--color-primary);
+  outline-offset: var(--space-1);
+  border-color: var(--color-primary);
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin-bottom: var(--space-1);
+}
+
+</style>
+  <style>
+    /*
+      No dedicated success/error/warning color tokens exist yet in design-system/tokens.json
+      (only color-fg, color-bg, color-primary, color-border, color-surface). Per §3 (never
+      encode meaning in color alone) results and errors are distinguished by icon + label,
+      not color, using color-border/color-surface for containment. Flagging this as a gap:
+      a future token pass could add semantic status tokens (e.g. color-danger, color-success).
+    */
+    body {
+      font-family: var(--font-family-base);
+      color: var(--color-fg);
+      background-color: var(--color-bg);
+      margin: 0;
+      min-height: 100dvh;
+    }
+    #app-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-width-default) solid var(--color-border);
+      background-color: var(--color-surface);
+    }
+    #app-nav .brand {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-md);
+    }
+    main {
+      display: flex;
+      justify-content: center;
+      padding: var(--space-4);
+    }
+    .calc-shell {
+      width: 100%;
+      max-width: 420px;
+    }
+    .calc-shell h1 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      margin: 0 0 var(--space-1) 0;
+    }
+    .calc-shell .subtitle {
+      font-size: var(--font-size-sm);
+      color: var(--color-fg);
+      opacity: 0.7;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .field-group {
+      margin-bottom: var(--space-3);
+    }
+    .op-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+    }
+    .op-btn {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-md);
+      padding: var(--space-2) 0;
+      min-height: 44px;
+      border-radius: var(--radius-md);
+      border: var(--border-width-default) solid var(--color-border);
+      background-color: var(--color-bg);
+      color: var(--color-fg);
+      cursor: pointer;
+    }
+    .op-btn:hover {
+      background-color: var(--color-surface);
+    }
+    .op-btn.selected {
+      background-color: var(--color-primary);
+      color: var(--color-primary-fg);
+      border-color: var(--color-primary);
+    }
+    .op-btn:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+    .operand-row {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-2);
+    }
+    .operand-row .field-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .op-symbol {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      padding-bottom: var(--space-2);
+      width: 24px;
+      text-align: center;
+    }
+    .btn-full {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-height: 44px;
+      margin-top: var(--space-2);
+    }
+    .btn-full[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: var(--color-primary-fg);
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .spinner { animation: none; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .outcome {
+      margin-top: var(--space-4);
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      border: var(--border-width-default) solid var(--color-border);
+      background-color: var(--color-surface);
+      display: none;
+    }
+    .outcome.visible {
+      display: block;
+    }
+    .outcome-heading {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      margin: 0 0 var(--space-1) 0;
+    }
+    .outcome-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: var(--font-weight-bold);
+      flex-shrink: 0;
+    }
+    .outcome.result .outcome-icon {
+      background-color: var(--color-primary);
+      color: var(--color-primary-fg);
+    }
+    .outcome.error .outcome-icon {
+      background-color: var(--color-fg);
+      color: var(--color-bg);
+    }
+    .outcome-value {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      word-break: break-word;
+    }
+    .outcome-message {
+      font-size: var(--font-size-md);
+    }
+    .helper-text {
+      font-size: var(--font-size-sm);
+      opacity: 0.7;
+      margin-top: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Reviewer bar -->
+<div id="review-bar" style="position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;gap:10px;padding:8px 16px;
+  background:var(--color-surface);border-bottom:1px solid var(--color-border);font-size:13px;font-family:var(--font-family-base)">
+  <span style="font-family:var(--font-family-base);color:var(--color-fg);opacity:0.7">FD-STORY-005</span>
+  <button id="prev-btn">← Prev</button>
+  <span id="screen-label" style="flex:1;text-align:center;font-weight:700;color:var(--color-fg)"></span>
+  <button id="next-btn">Next →</button>
+</div>
+<div style="height:46px"></div><!-- spacer -->
+
+<style>
+  #review-bar button {
+    color: var(--color-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: var(--font-family-base);
+    padding: 4px 8px;
+  }
+</style>
+
+<!-- App nav: minimal top bar — single-purpose calculator utility, no sidebar/multi-page IA needed -->
+<div id="app-nav">
+  <span class="brand">Quick Calculator</span>
+</div>
+
+<div id="screens">
+
+  <!--
+    Screen: Calculator — Idle
+    Notes:
+      - AC3: no client-side validation exists anywhere in this form; any operand value
+        (including empty or non-numeric) is sent to the backend as-is on submit.
+      - Operation selector uses four equally-weighted buttons (not a native <select>) so the
+        chosen operator is always visible at a glance; selected state uses shape (filled
+        background) + label, not color alone.
+      - Calculate button is full-width per round-1 feedback.
+  -->
+  <div class="screen" data-name="Calculator — Idle">
+    <main>
+      <div class="calc-shell">
+        <h1>Quick Calculator</h1>
+        <p class="subtitle">Choose an operation, enter two numbers, and submit.</p>
+
+        <div class="field-group">
+          <span class="label">Operation</span>
+          <div class="op-grid" role="group" aria-label="Select an operation">
+            <button type="button" class="op-btn selected" data-op="+">+ Add</button>
+            <button type="button" class="op-btn" data-op="-">− Subtract</button>
+            <button type="button" class="op-btn" data-op="×">× Multiply</button>
+            <button type="button" class="op-btn" data-op="÷">÷ Divide</button>
+          </div>
+        </div>
+
+        <div class="operand-row">
+          <div class="field-group">
+            <label class="label" for="operand-a-idle">First number</label>
+            <input class="input" id="operand-a-idle" type="text" placeholder="e.g. 12" value="8" />
+          </div>
+          <span class="op-symbol">+</span>
+          <div class="field-group">
+            <label class="label" for="operand-b-idle">Second number</label>
+            <input class="input" id="operand-b-idle" type="text" placeholder="e.g. 4" value="2" />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full" onclick="show(1)">Calculate</button>
+
+        <div class="outcome" id="outcome-idle"></div>
+
+        <p class="helper-text">Result and error states are shown on the following reviewer-bar screens.</p>
+      </div>
+    </main>
+  </div>
+
+  <!--
+    Screen: Calculator — Loading
+    Notes:
+      - AC1/AC4: satisfies round-1 feedback — visible loading state while awaiting the backend.
+      - Calculate button is disabled and full-width, showing a spinner + "Calculating…" label
+        so the user never wonders whether the click registered (§4).
+      - No prior outcome is shown here to demonstrate the clean transition into a pending state.
+  -->
+  <div class="screen" data-name="Calculator — Loading" style="display:none">
+    <main>
+      <div class="calc-shell">
+        <h1>Quick Calculator</h1>
+        <p class="subtitle">Choose an operation, enter two numbers, and submit.</p>
+
+        <div class="field-group">
+          <span class="label">Operation</span>
+          <div class="op-grid" role="group" aria-label="Select an operation">
+            <button type="button" class="op-btn selected" data-op="+" disabled>+ Add</button>
+            <button type="button" class="op-btn" data-op="-" disabled>− Subtract</button>
+            <button type="button" class="op-btn" data-op="×" disabled>× Multiply</button>
+            <button type="button" class="op-btn" data-op="÷" disabled>÷ Divide</button>
+          </div>
+        </div>
+
+        <div class="operand-row">
+          <div class="field-group">
+            <label class="label" for="operand-a-loading">First number</label>
+            <input class="input" id="operand-a-loading" type="text" value="8" disabled />
+          </div>
+          <span class="op-symbol">+</span>
+          <div class="field-group">
+            <label class="label" for="operand-b-loading">Second number</label>
+            <input class="input" id="operand-b-loading" type="text" value="2" disabled />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full" disabled>
+          <span class="spinner" aria-hidden="true"></span>
+          Calculating…
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!--
+    Screen: Calculator — Result
+    Notes:
+      - AC1: displays the result returned by the backend for the submitted operation.
+      - AC4: this outcome card replaces any prior result/error (only one outcome renders
+        at a time; new submissions overwrite it in place).
+      - Operation controls and inputs return to their normal enabled state after the
+        response arrives.
+  -->
+  <div class="screen" data-name="Calculator — Result" style="display:none">
+    <main>
+      <div class="calc-shell">
+        <h1>Quick Calculator</h1>
+        <p class="subtitle">Choose an operation, enter two numbers, and submit.</p>
+
+        <div class="field-group">
+          <span class="label">Operation</span>
+          <div class="op-grid" role="group" aria-label="Select an operation">
+            <button type="button" class="op-btn selected" data-op="+">+ Add</button>
+            <button type="button" class="op-btn" data-op="-">− Subtract</button>
+            <button type="button" class="op-btn" data-op="×">× Multiply</button>
+            <button type="button" class="op-btn" data-op="÷">÷ Divide</button>
+          </div>
+        </div>
+
+        <div class="operand-row">
+          <div class="field-group">
+            <label class="label" for="operand-a-result">First number</label>
+            <input class="input" id="operand-a-result" type="text" value="8" />
+          </div>
+          <span class="op-symbol">+</span>
+          <div class="field-group">
+            <label class="label" for="operand-b-result">Second number</label>
+            <input class="input" id="operand-b-result" type="text" value="2" />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full">Calculate</button>
+
+        <div class="outcome result visible">
+          <p class="outcome-heading"><span class="outcome-icon">=</span> Result</p>
+          <p class="outcome-value">10</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!--
+    Screen: Calculator — Backend Error (400)
+    Notes:
+      - AC2: shows the backend's inline error message (e.g. divide by zero) without crashing
+        the page — the form remains fully usable.
+      - AC3: this state is reachable even though "÷" with a zero divisor is a perfectly valid
+        client-side input; no client validation intercepts it, the backend's 400 message is
+        rendered verbatim.
+      - AC4: replaces a prior result/error the same way the Result screen does.
+  -->
+  <div class="screen" data-name="Calculator — Backend Error (400)" style="display:none">
+    <main>
+      <div class="calc-shell">
+        <h1>Quick Calculator</h1>
+        <p class="subtitle">Choose an operation, enter two numbers, and submit.</p>
+
+        <div class="field-group">
+          <span class="label">Operation</span>
+          <div class="op-grid" role="group" aria-label="Select an operation">
+            <button type="button" class="op-btn" data-op="+">+ Add</button>
+            <button type="button" class="op-btn" data-op="-">− Subtract</button>
+            <button type="button" class="op-btn" data-op="×">× Multiply</button>
+            <button type="button" class="op-btn selected" data-op="÷">÷ Divide</button>
+          </div>
+        </div>
+
+        <div class="operand-row">
+          <div class="field-group">
+            <label class="label" for="operand-a-error">First number</label>
+            <input class="input" id="operand-a-error" type="text" value="8" />
+          </div>
+          <span class="op-symbol">÷</span>
+          <div class="field-group">
+            <label class="label" for="operand-b-error">Second number</label>
+            <input class="input" id="operand-b-error" type="text" value="0" />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full">Calculate</button>
+
+        <div class="outcome error visible">
+          <p class="outcome-heading"><span class="outcome-icon">!</span> Couldn't complete that calculation</p>
+          <p class="outcome-message">Division by zero is not allowed. Enter a non-zero second number and try again.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!--
+    Screen: Calculator — Non-numeric Input Submitted
+    Notes:
+      - AC3: demonstrates that non-numeric/empty input is sent to the backend unchanged — the
+        UI performs no client-side type or emptiness checks of its own.
+      - AC2: the inline message shown here is exactly what the backend returned for invalid
+        input, phrased as a normal inline error (not a stack trace).
+  -->
+  <div class="screen" data-name="Calculator — Non-numeric Input Submitted" style="display:none">
+    <main>
+      <div class="calc-shell">
+        <h1>Quick Calculator</h1>
+        <p class="subtitle">Choose an operation, enter two numbers, and submit.</p>
+
+        <div class="field-group">
+          <span class="label">Operation</span>
+          <div class="op-grid" role="group" aria-label="Select an operation">
+            <button type="button" class="op-btn selected" data-op="+">+ Add</button>
+            <button type="button" class="op-btn" data-op="-">− Subtract</button>
+            <button type="button" class="op-btn" data-op="×">× Multiply</button>
+            <button type="button" class="op-btn" data-op="÷">÷ Divide</button>
+          </div>
+        </div>
+
+        <div class="operand-row">
+          <div class="field-group">
+            <label class="label" for="operand-a-invalid">First number</label>
+            <input class="input" id="operand-a-invalid" type="text" value="abc" />
+          </div>
+          <span class="op-symbol">+</span>
+          <div class="field-group">
+            <label class="label" for="operand-b-invalid">Second number</label>
+            <input class="input" id="operand-b-invalid" type="text" value="" placeholder="e.g. 4" />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full">Calculate</button>
+
+        <div class="outcome error visible">
+          <p class="outcome-heading"><span class="outcome-icon">!</span> Couldn't complete that calculation</p>
+          <p class="outcome-message">Both numbers must be valid numeric values. Update your entries and try again.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</div>
+
+<script>
+  // Fixture data — illustrates the response payloads each screen represents; no live fetch.
+  const FIXTURES = {
+    result: { a: 8, b: 2, op: "+", value: 10 },
+    error400: { a: 8, b: 0, op: "÷", message: "Division by zero is not allowed. Enter a non-zero second number and try again." },
+    invalid: { a: "abc", b: "", op: "+", message: "Both numbers must be valid numeric values. Update your entries and try again." }
+  };
+
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  let cur = 0;
+  function show(i) {
+    cur = Math.max(0, Math.min(screens.length - 1, i));
+    screens.forEach((s, j) => s.style.display = j === cur ? 'block' : 'none');
+    document.getElementById('screen-label').textContent =
+      `${cur + 1} / ${screens.length}: ${screens[cur].dataset.name}`;
+  }
+  document.getElementById('prev-btn').onclick = () => show(cur - 1);
+  document.getElementById('next-btn').onclick = () => show(cur + 1);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') show(cur + 1);
+    if (e.key === 'ArrowLeft') show(cur - 1);
+  });
+
+  // Simulated selection interaction within the idle screen (visual only).
+  document.querySelectorAll('#screens .screen[data-name="Calculator — Idle"] .op-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#screens .screen[data-name="Calculator — Idle"] .op-btn')
+        .forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.querySelector('#screens .screen[data-name="Calculator — Idle"] .op-symbol').textContent = btn.dataset.op;
+    });
+  });
+
+  show(0);
+</script>
+
+</body>
+</html>
+
+<!-- arc:css-inlined -->
