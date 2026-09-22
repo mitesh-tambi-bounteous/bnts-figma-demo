@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design System Style Guide</title>
+  <link rel="stylesheet" href="./tokens.css" />
+  <link rel="stylesheet" href="./prototype-utils.css" />
+  <style>
+    body {
+      font-family: var(--font-family-base);
+      color: var(--color-fg);
+      background-color: var(--color-bg);
+      margin: 0;
+      padding: var(--space-4);
+    }
+    h1, h2 {
+      font-family: var(--font-family-base);
+    }
+    section {
+      margin-bottom: var(--space-4);
+    }
+    .swatch-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .swatch {
+      width: 140px;
+    }
+    .swatch-color {
+      height: 64px;
+      border-radius: var(--radius-md);
+      border: var(--border-width-default) solid var(--color-border);
+    }
+    .swatch-label {
+      font-size: var(--font-size-sm);
+      margin-top: var(--space-1);
+    }
+    .dimension-bar {
+      background-color: var(--color-primary);
+      height: 12px;
+    }
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text-lg">Design System Style Guide</h1>
+  <p class="text-body">Every value below is rendered from <code>tokens.json</code> via <code>tokens.css</code>, and every component is built purely from <code>prototype-utils.css</code>.</p>
+
+  <section>
+    <h2 class="text-lg">Colors</h2>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-fg);"></div>
+        <div class="swatch-label">color-fg</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-bg);"></div>
+        <div class="swatch-label">color-bg</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-primary);"></div>
+        <div class="swatch-label">color-primary</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-primary-fg);"></div>
+        <div class="swatch-label">color-primary-fg</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-border);"></div>
+        <div class="swatch-label">color-border</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-surface);"></div>
+        <div class="swatch-label">color-surface</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Spacing</h2>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="dimension-bar" style="width: var(--space-1);"></div>
+        <div class="swatch-label">space-1</div>
+      </div>
+      <div class="swatch">
+        <div class="dimension-bar" style="width: var(--space-2);"></div>
+        <div class="swatch-label">space-2</div>
+      </div>
+      <div class="swatch">
+        <div class="dimension-bar" style="width: var(--space-3);"></div>
+        <div class="swatch-label">space-3</div>
+      </div>
+      <div class="swatch">
+        <div class="dimension-bar" style="width: var(--space-4);"></div>
+        <div class="swatch-label">space-4</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Radii</h2>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-primary); border-radius: var(--radius-sm);"></div>
+        <div class="swatch-label">radius-sm</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-primary); border-radius: var(--radius-md);"></div>
+        <div class="swatch-label">radius-md</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: var(--color-primary); border-radius: var(--radius-lg);"></div>
+        <div class="swatch-label">radius-lg</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Type scale</h2>
+    <p class="text-sm">font-size-sm — The quick brown fox jumps over the lazy dog.</p>
+    <p class="text-md">font-size-md — The quick brown fox jumps over the lazy dog.</p>
+    <p class="text-lg">font-size-lg — The quick brown fox jumps over the lazy dog.</p>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Shadow</h2>
+    <div class="card" style="width: 200px;">
+      <p class="card-body">shadow-card</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Buttons</h2>
+    <div class="component-row">
+      <button class="btn btn-primary">Primary button</button>
+      <button class="btn btn-secondary">Secondary button</button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Cards</h2>
+    <div class="component-row">
+      <div class="card" style="width: 260px;">
+        <h3 class="card-title">Card title</h3>
+        <p class="card-body">Card body copy built entirely from card.default.* alias tokens.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Chips</h2>
+    <div class="component-row">
+      <span class="chip">Default chip</span>
+      <span class="chip chip-outline">Outline chip</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-lg">Form controls</h2>
+    <div style="max-width: 320px;">
+      <label class="label" for="sample-input">Email address</label>
+      <input class="input" id="sample-input" type="email" placeholder="you@example.com" />
+    </div>
+  </section>
+</body>
+</html>
