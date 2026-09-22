@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FD-STORY-005 — Frontend Calculator UI</title>
+<style>
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #1a1a1a; /** Primary body text color on light backgrounds. */
+  --color-bg: #ffffff; /** Default page/surface background color. */
+  --color-primary: #2563eb; /** Brand accent color used for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color placed on top of color-primary surfaces. */
+  --color-border: #d1d5db; /** Default border color for cards, inputs, and dividers. */
+  --color-surface: #f9fafb; /** Slightly raised surface color, e.g. cards on top of the page background. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Base spacing step, used for default gaps. */
+  --space-3: 16px; /** Medium spacing step, used for component padding. */
+  --space-4: 24px; /** Large spacing step, used for section-level spacing. */
+  --radius-sm: 4px; /** Corner radius for small controls like chips. */
+  --radius-md: 8px; /** Corner radius for standard controls like buttons and inputs. */
+  --radius-lg: 16px; /** Corner radius for larger surfaces like cards. */
+  --font-size-sm: 12px; /** Small text size, used for captions and chips. */
+  --font-size-md: 16px; /** Default body text size. */
+  --font-size-lg: 24px; /** Heading text size. */
+  --font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif; /** Default typeface stack for all UI text. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --border-width-default: 1px; /** Default border thickness for cards, inputs, and dividers. */
+  --shadow-card: 0px 2px 8px 0px rgb(0% 0% 0% / 0.08); /** Soft elevation shadow used under cards. */
+  --button-primary-background: var(--color-primary); /** Background color for the primary button variant. */
+  --button-primary-foreground: var(--color-primary-fg); /** Text color for the primary button variant. */
+  --button-primary-radius: var(--radius-md); /** Corner radius for the primary button variant. */
+  --button-primary-padding-block: var(--space-2); /** Vertical padding for the primary button variant. */
+  --button-primary-padding-inline: var(--space-3); /** Horizontal padding for the primary button variant. */
+  --button-secondary-background: var(--color-bg); /** Background color for the secondary button variant. */
+  --button-secondary-foreground: var(--color-fg); /** Text color for the secondary button variant. */
+  --button-secondary-border: var(--color-border); /** Border color for the secondary button variant. */
+  --card-default-background: var(--color-surface); /** Background color for the default card variant. */
+  --card-default-border: var(--color-border); /** Border color for the default card variant. */
+  --card-default-radius: var(--radius-lg); /** Corner radius for the default card variant. */
+  --card-default-padding: var(--space-4); /** Inner padding for the default card variant. */
+}
+
+</style>
+<style>
+/* Prototype utility & component classes built entirely from design tokens. */
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-md {
+  font-size: var(--font-size-md);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-body {
+  font-family: var(--font-family-base);
+  color: var(--color-fg);
+  font-weight: var(--font-weight-regular);
+}
+
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+
+.surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  border-width: var(--border-width-default);
+  border-style: solid;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+  border-color: var(--button-primary-background);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-color: var(--button-secondary-border);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+}
+
+/* Card */
+
+.card {
+  background-color: var(--card-default-background);
+  border: var(--border-width-default) solid var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--card-default-padding);
+  box-shadow: var(--shadow-card);
+}
+
+.card-title {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fg);
+  margin: 0;
+}
+
+/* Chip */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+}
+
+.chip-outline {
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+}
+
+/* Form controls */
+
+.input {
+  display: block;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+}
+
+.input:focus {
+  outline: var(--border-width-default) solid var(--color-primary);
+  outline-offset: var(--space-1);
+  border-color: var(--color-primary);
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin-bottom: var(--space-1);
+}
+
+</style>
+<!--
+  Design system note: tokens.json / style-guide.html were reviewed before designing.
+  No error/danger color alias exists in this project's token set (no `color-danger`,
+  `color-error`, etc. — only color-fg / color-bg / color-primary / color-border /
+  color-surface). Per UI guideline §3 ("never encode meaning in color alone"), the
+  error state below is built from color-border + an inline warning glyph ("⚠") +
+  explicit "Error" label text rather than inventing an unauthorized red hex value.
+  If a stakeholder wants a dedicated error color, that is a token-catalog gap to
+  raise with sdlc.design-system-bootstrap, not something to hardcode here.
+-->
+<style>
+  /* App nav: none — this is a single-purpose utility screen (a calculator), so no
+     sidebar/top-bar navigation is introduced. The reviewer bar below is the only
+     persistent chrome. */
+
+  body {
+    font-family: var(--font-family-base);
+    color: var(--color-fg);
+    background-color: var(--color-bg);
+    margin: 0;
+  }
+
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: var(--space-4);
+    padding-top: calc(var(--space-4) + 46px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .page-title {
+    margin: 0;
+  }
+
+  .page-subtitle {
+    color: var(--color-fg);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .op-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .op-btn {
+    flex: 1 1 calc(50% - var(--space-2));
+    min-height: 44px;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    border: var(--border-width-default) solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    cursor: pointer;
+  }
+
+  .op-btn:focus-visible {
+    outline: var(--border-width-default) solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .op-btn[aria-pressed="true"] {
+    background-color: var(--color-primary);
+    color: var(--color-primary-fg);
+    border-color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .field-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submit-btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .outcome {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-3);
+  }
+
+  .outcome-placeholder {
+    color: var(--color-fg);
+    opacity: 0.55;
+  }
+
+  .outcome-result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    width: 100%;
+  }
+
+  .outcome-result .value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .outcome-error {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    width: 100%;
+    border: var(--border-width-default) solid var(--color-border);
+    border-left-width: 4px;
+    border-left-color: var(--color-fg);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-align: left;
+    background-color: var(--color-surface);
+  }
+
+  .outcome-error .error-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    animation: spin 0.8s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner {
+      animation: none;
+    }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .static-note {
+    font-size: var(--font-size-sm);
+    color: var(--color-fg);
+    opacity: 0.65;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Reviewer bar -->
+<div id="review-bar" style="position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;gap:10px;padding:8px 16px;
+  background:var(--color-surface);border-bottom:1px solid var(--color-border);font-size:13px;font-family:var(--font-family-base)">
+  <span style="font-family:monospace;color:var(--color-fg);opacity:0.65">FD-STORY-005</span>
+  <button id="prev-btn" style="background:none;border:none;color:var(--color-primary);cursor:pointer;font-weight:var(--font-weight-bold)">← Prev</button>
+  <span id="screen-label" style="flex:1;text-align:center;font-weight:var(--font-weight-bold);color:var(--color-fg)"></span>
+  <button id="next-btn" style="background:none;border:none;color:var(--color-primary);cursor:pointer;font-weight:var(--font-weight-bold)">Next →</button>
+</div>
+
+<div id="screens">
+
+  <!-- State: interactive-calculator -->
+  <!--
+    Screen: Calculator (interactive)
+    Notes:
+      - Fully interactive: pick an operation, type any two values, press Calculate.
+      - No client-side validation is performed on the inputs (AC3) — whatever is
+        typed (including empty or non-numeric text) is sent to the simulated
+        backend call as-is.
+      - The simulated backend (setTimeout, 300ms) applies the *backend's* rules
+        so reviewers can see both outcomes:
+          - divide with second operand "0" -> simulated HTTP 400, inline error (AC2)
+          - non-numeric/empty operands -> simulated HTTP 400, inline error (AC2)
+          - anything else -> simulated computed result (AC1)
+      - Submitting again always clears the previous result/error first (AC4),
+        and the outcome panel keeps a fixed min-height so the layout doesn't jump.
+      - Submit button is disabled + relabeled "Calculating…" while the simulated
+        request is in flight, per guideline §4 (no double-submit).
+  -->
+  <div class="screen" data-name="Calculator">
+    <div class="page">
+      <div>
+        <h1 class="page-title text-lg">Calculator</h1>
+        <p class="page-subtitle text-md">Pick an operation, enter two numbers, and submit.</p>
+      </div>
+
+      <div class="card">
+        <form id="calc-form">
+          <div class="field-row">
+            <div class="field">
+              <span class="label" id="op-label">Operation</span>
+              <div class="op-group" role="group" aria-labelledby="op-label">
+                <button type="button" class="op-btn" data-op="add" aria-pressed="true">Add (+)</button>
+                <button type="button" class="op-btn" data-op="subtract" aria-pressed="false">Subtract (−)</button>
+                <button type="button" class="op-btn" data-op="multiply" aria-pressed="false">Multiply (×)</button>
+                <button type="button" class="op-btn" data-op="divide" aria-pressed="false">Divide (÷)</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="operand-a">First number</label>
+              <input class="input" id="operand-a" name="operand-a" type="text" inputmode="decimal" placeholder="e.g. 10" autocomplete="off" />
+            </div>
+
+            <div class="field">
+              <label class="label" for="operand-b">Second number</label>
+              <input class="input" id="operand-b" name="operand-b" type="text" inputmode="decimal" placeholder="e.g. 0" autocomplete="off" />
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">Calculate</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card outcome" id="outcome" aria-live="polite">
+        <p class="outcome-placeholder text-md" id="outcome-placeholder">Your result will appear here.</p>
+      </div>
+
+      <p class="static-note">Try: 10 ÷ 0 → backend error. 10 ÷ abc → backend error. 10 + 5 → result.</p>
+    </div>
+  </div>
+
+  <!-- State: loading -->
+  <!--
+    Screen: Calculator — submitting (reference state)
+    Notes:
+      - Static reference for the in-flight moment: submit button disabled and
+        relabeled, spinner shown in the outcome panel, prior result/error already
+        cleared. Mirrors what the interactive screen shows for ~300ms per submit.
+  -->
+  <div class="screen" data-name="Submitting (reference)">
+    <div class="page">
+      <div>
+        <h1 class="page-title text-lg">Calculator</h1>
+        <p class="page-subtitle text-md">Pick an operation, enter two numbers, and submit.</p>
+      </div>
+
+      <div class="card">
+        <div class="field-row">
+          <div class="field">
+            <span class="label">Operation</span>
+            <div class="op-group" role="group" aria-label="Operation">
+              <button type="button" class="op-btn" aria-pressed="false" disabled>Add (+)</button>
+              <button type="button" class="op-btn" aria-pressed="false" disabled>Subtract (−)</button>
+              <button type="button" class="op-btn" aria-pressed="true" disabled>Multiply (×)</button>
+              <button type="button" class="op-btn" aria-pressed="false" disabled>Divide (÷)</button>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">First number</label>
+            <input class="input" type="text" value="12" disabled />
+          </div>
+          <div class="field">
+            <label class="label">Second number</label>
+            <input class="input" type="text" value="4" disabled />
+          </div>
+          <button type="button" class="btn btn-primary submit-btn" disabled>Calculating…</button>
+        </div>
+      </div>
+
+      <div class="card outcome">
+        <div style="display:flex;align-items:center;gap:var(--space-2);">
+          <div class="spinner" role="status" aria-label="Calculating"></div>
+          <span class="text-md">Calculating…</span>
+        </div>
+      </div>
+
+      <p class="static-note">Reference only — the interactive Calculator screen shows this automatically for ~300ms after Calculate is pressed.</p>
+    </div>
+  </div>
+
+  <!-- State: success -->
+  <!--
+    Screen: Calculator — result (reference state)
+    Notes:
+      - Satisfies AC1: the backend's computed result is displayed, labeled with
+        the operation and operands that produced it.
+  -->
+  <div class="screen" data-name="Result (reference)">
+    <div class="page">
+      <div>
+        <h1 class="page-title text-lg">Calculator</h1>
+        <p class="page-subtitle text-md">Pick an operation, enter two numbers, and submit.</p>
+      </div>
+
+      <div class="card">
+        <div class="field-row">
+          <div class="field">
+            <span class="label">Operation</span>
+            <div class="op-group" role="group" aria-label="Operation">
+              <button type="button" class="op-btn" aria-pressed="true">Add (+)</button>
+              <button type="button" class="op-btn" aria-pressed="false">Subtract (−)</button>
+              <button type="button" class="op-btn" aria-pressed="false">Multiply (×)</button>
+              <button type="button" class="op-btn" aria-pressed="false">Divide (÷)</button>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">First number</label>
+            <input class="input" type="text" value="12" />
+          </div>
+          <div class="field">
+            <label class="label">Second number</label>
+            <input class="input" type="text" value="30" />
+          </div>
+          <button type="button" class="btn btn-primary submit-btn">Calculate</button>
+        </div>
+      </div>
+
+      <div class="card outcome">
+        <div class="outcome-result">
+          <span class="text-sm" style="opacity:0.7;">12 + 30</span>
+          <span class="value">= 42</span>
+        </div>
+      </div>
+
+      <p class="static-note">Reference only — see the interactive Calculator screen for live behavior.</p>
+    </div>
+  </div>
+
+  <!-- State: error -->
+  <!--
+    Screen: Calculator — backend error (reference state)
+    Notes:
+      - Satisfies AC2: an HTTP 400 from the backend (divide by zero, in this
+        example) is shown inline, in plain language, without the app crashing.
+      - Error styling deliberately avoids color-only signaling (see head comment
+        on the missing error token): a warning glyph + "Error" label + left
+        accent border together carry the meaning.
+  -->
+  <div class="screen" data-name="Backend error (reference)">
+    <div class="page">
+      <div>
+        <h1 class="page-title text-lg">Calculator</h1>
+        <p class="page-subtitle text-md">Pick an operation, enter two numbers, and submit.</p>
+      </div>
+
+      <div class="card">
+        <div class="field-row">
+          <div class="field">
+            <span class="label">Operation</span>
+            <div class="op-group" role="group" aria-label="Operation">
+              <button type="button" class="op-btn" aria-pressed="false">Add (+)</button>
+              <button type="button" class="op-btn" aria-pressed="false">Subtract (−)</button>
+              <button type="button" class="op-btn" aria-pressed="false">Multiply (×)</button>
+              <button type="button" class="op-btn" aria-pressed="true">Divide (÷)</button>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">First number</label>
+            <input class="input" type="text" value="10" />
+          </div>
+          <div class="field">
+            <label class="label">Second number</label>
+            <input class="input" type="text" value="0" />
+          </div>
+          <button type="button" class="btn btn-primary submit-btn">Calculate</button>
+        </div>
+      </div>
+
+      <div class="card outcome">
+        <div class="outcome-error" role="alert">
+          <span class="error-heading"><span aria-hidden="true">⚠</span> Error</span>
+          <span class="text-md">Cannot divide by zero. Enter a non-zero second number and try again.</span>
+        </div>
+      </div>
+
+      <p class="static-note">Reference only — the message shown here is passed through verbatim from the backend's response.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Fixture data: how the simulated backend responds to each operation.
+  // Real implementation calls the actual API; this is illustrative only.
+  const FIXTURES = {
+    divideByZero: { status: 400, message: "Cannot divide by zero. Enter a non-zero second number and try again." },
+    invalidInput: { status: 400, message: "Both numbers must be valid, finite numbers." },
+    nonFinite: { status: 400, message: "That calculation produced a result that is too large to display." },
+  };
+
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  let cur = 0;
+  function show(i) {
+    cur = Math.max(0, Math.min(screens.length - 1, i));
+    screens.forEach((s, j) => s.style.display = j === cur ? 'block' : 'none');
+    document.getElementById('screen-label').textContent =
+      `${cur + 1} / ${screens.length}: ${screens[cur].dataset.name}`;
+  }
+  document.getElementById('prev-btn').onclick = () => show(cur - 1);
+  document.getElementById('next-btn').onclick = () => show(cur + 1);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') show(cur + 1);
+    if (e.key === 'ArrowLeft') show(cur - 1);
+  });
+  show(0);
+
+  // --- Interactive calculator (first screen only) ---
+  const form = document.getElementById('calc-form');
+  const opButtons = form.querySelectorAll('.op-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const outcome = document.getElementById('outcome');
+  let selectedOp = 'add';
+
+  opButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      opButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      selectedOp = btn.dataset.op;
+    });
+  });
+
+  const opSymbol = { add: '+', subtract: '−', multiply: '×', divide: '÷' };
+
+  // Simulates the backend contract described in the acceptance criteria.
+  // No client-side validation happens before this call is "sent" — whatever
+  // was typed is forwarded as-is, matching AC3.
+  function simulateBackendCall(op, rawA, rawB) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const a = Number(rawA);
+        const b = Number(rawB);
+        const aValid = rawA.trim() !== '' && Number.isFinite(a);
+        const bValid = rawB.trim() !== '' && Number.isFinite(b);
+
+        if (!aValid || !bValid) {
+          resolve({ ok: false, error: FIXTURES.invalidInput });
+          return;
+        }
+        if (op === 'divide' && b === 0) {
+          resolve({ ok: false, error: FIXTURES.divideByZero });
+          return;
+        }
+
+        let value;
+        if (op === 'add') value = a + b;
+        else if (op === 'subtract') value = a - b;
+        else if (op === 'multiply') value = a * b;
+        else value = a / b;
+
+        if (!Number.isFinite(value)) {
+          resolve({ ok: false, error: FIXTURES.nonFinite });
+          return;
+        }
+
+        resolve({ ok: true, value, a, b, op });
+      }, 300);
+    });
+  }
+
+  function renderPlaceholder() {
+    outcome.innerHTML = '<p class="outcome-placeholder text-md">Your result will appear here.</p>';
+  }
+
+  function renderLoading() {
+    outcome.innerHTML = `
+      <div style="display:flex;align-items:center;gap:var(--space-2);">
+        <div class="spinner" role="status" aria-label="Calculating"></div>
+        <span class="text-md">Calculating…</span>
+      </div>`;
+  }
+
+  function renderResult(result) {
+    outcome.innerHTML = `
+      <div class="outcome-result">
+        <span class="text-sm" style="opacity:0.7;">${result.a} ${opSymbol[result.op]} ${result.b}</span>
+        <span class="value">= ${result.value}</span>
+      </div>`;
+  }
+
+  function renderError(error) {
+    outcome.innerHTML = `
+      <div class="outcome-error" role="alert">
+        <span class="error-heading"><span aria-hidden="true">⚠</span> Error</span>
+        <span class="text-md">${error.message}</span>
+      </div>`;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const rawA = document.getElementById('operand-a').value;
+    const rawB = document.getElementById('operand-b').value;
+
+    // AC4: always replace whatever was shown before, immediately.
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Calculating…';
+    renderLoading();
+
+    const response = await simulateBackendCall(selectedOp, rawA, rawB);
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Calculate';
+
+    if (response.ok) {
+      renderResult(response);
+    } else {
+      renderError(response.error);
+    }
+  });
+</script>
+
+</body>
+</html>
+
+<!-- arc:css-inlined -->
