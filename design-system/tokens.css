@@ -5,7 +5,7 @@
 :root {
   --color-fg: #1a1a1a; /** Primary body text color on light backgrounds. */
   --color-bg: #ffffff; /** Default page/surface background color. */
-  --color-primary: #2563eb; /** Brand accent color used for primary actions. */
+  --color-primary: #3b82f6; /** Brand accent color used for primary actions. */
   --color-primary-fg: #ffffff; /** Text/icon color placed on top of color-primary surfaces. */
   --color-border: #d1d5db; /** Default border color for cards, inputs, and dividers. */
   --color-surface: #f9fafb; /** Slightly raised surface color, e.g. cards on top of the page background. */

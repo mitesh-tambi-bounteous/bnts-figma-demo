@@ -170,5 +170,24 @@
       <input class="input" id="sample-input" type="email" placeholder="you@example.com" />
     </div>
   </section>
+
+  <section>
+    <h2 class="text-lg">UI guidelines</h2>
+
+    <h3 class="text-md">Navigation &amp; information architecture</h3>
+    <p class="text-body">Use a fixed left sidebar for primary sections, since the product is a persistent workspace users return to repeatedly rather than a marketing surface. Keep a slim top bar for account/context switching only, since duplicating navigation across sidebar and top bar creates ambiguity about where a link lives.</p>
+
+    <h3 class="text-md">Layout &amp; density</h3>
+    <p class="text-body">Favor a data-dense layout (compact <code>card</code> and <code>input</code> spacing via <code>space-1</code>/<code>space-2</code>) over a spacious consumer look, since users scan lists and forms repeatedly and extra whitespace slows that down. Collapse the sidebar below 768px, since narrow viewports can't fit both a sidebar and usable content width.</p>
+
+    <h3 class="text-md">Component usage</h3>
+    <p class="text-body">Use <code>.card</code> for a single, self-contained record or summary (e.g. one entity's detail), since cards imply one grouped, browsable unit rather than a comparable series. Use a table for any list of records sharing the same fields, since tables let users compare values across rows at a glance. Use <code>.chip</code> only for compact status/tag labels, since chips are too small to hold actionable text. Use <code>.btn-primary</code> for exactly one primary action per view and <code>.btn-secondary</code> for everything else, since more than one primary button removes the visual priority it's meant to signal.</p>
+
+    <h3 class="text-md">Theme stance</h3>
+    <p class="text-body">Ship light theme only for now (<code>color-bg</code>/<code>color-fg</code> as defined in tokens), since the product has one small team of internal users and a dark theme isn't a validated need yet.</p>
+
+    <h3 class="text-md">Voice &amp; tone</h3>
+    <p class="text-body">Write copy in short, direct, task-oriented sentences (e.g. "Save changes", not "Would you like to save your changes?"), since users are working through repetitive tasks and don't need conversational framing.</p>
+  </section>
 </body>
 </html>
