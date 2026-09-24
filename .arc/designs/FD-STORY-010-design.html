@@ -214,9 +214,14 @@
   body {
     font-family: var(--font-family-base);
     background-color: var(--color-bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--color-primary) 12%, transparent) 0%, transparent 55%),
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--color-primary) 8%, transparent) 0%, transparent 45%);
+    background-attachment: fixed;
     color: var(--color-fg);
     margin: 0;
     min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
   }
 
   .stage {
@@ -247,11 +252,28 @@
     }
   }
 
+  .card {
+    backdrop-filter: blur(6px);
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px 0 color-mix(in srgb, var(--color-fg) 12%, transparent);
+    }
+  }
+
   .title {
-    font-size: var(--font-size-lg);
+    font-size: calc(var(--font-size-lg) * 1.25);
     font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
     margin: 0 0 var(--space-2) 0;
     text-align: center;
+    background: linear-gradient(135deg, var(--color-fg), var(--color-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .subtitle {
@@ -260,6 +282,7 @@
     opacity: 0.7;
     text-align: center;
     margin: 0 0 var(--space-4) 0;
+    letter-spacing: 0.02em;
   }
 
   .instructions {
@@ -278,12 +301,28 @@
     min-height: 44px;
     min-width: 200px;
     font-size: var(--font-size-md);
+    border-radius: var(--radius-lg);
+    letter-spacing: 0.01em;
+    transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+    box-shadow: 0 4px 14px 0 color-mix(in srgb, var(--color-primary) 35%, transparent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-lg:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px 0 color-mix(in srgb, var(--color-primary) 45%, transparent);
+    }
+
+    .btn-lg:active {
+      transform: translateY(0);
+    }
   }
 
   .btn:disabled {
     cursor: not-allowed;
     opacity: 0.6;
     pointer-events: none;
+    box-shadow: none;
   }
 
   .leaderboard-list {
@@ -300,10 +339,15 @@
     grid-template-columns: 2.5em 1fr auto;
     align-items: center;
     gap: var(--space-2);
-    padding-block: var(--space-1);
+    padding-block: var(--space-2);
     padding-inline: var(--space-2);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     font-size: var(--font-size-md);
+    transition: background-color 150ms ease-out;
+  }
+
+  .leaderboard-row:hover {
+    background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
   }
 
   .leaderboard-row.tied {
@@ -311,13 +355,22 @@
   }
 
   .rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: var(--radius-lg);
     font-weight: var(--font-weight-bold);
-    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    color: var(--color-primary-fg);
+    background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 70%, var(--color-fg)));
   }
 
   .score {
     font-weight: var(--font-weight-bold);
     text-align: right;
+    letter-spacing: -0.01em;
   }
 
   .name {
@@ -355,8 +408,9 @@
     flex-direction: column;
     gap: var(--space-2);
     border: var(--border-width-default) solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: var(--space-3);
+    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
   }
 
   .error-box strong {
@@ -390,6 +444,18 @@
 
   .flash-icon {
     font-size: 48px;
+    filter: drop-shadow(0 6px 16px color-mix(in srgb, var(--color-primary) 45%, transparent));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .flash-icon {
+      animation: float 1.8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
 </style>
 </head>
@@ -644,7 +710,7 @@
       const li = document.createElement("li");
       li.className = "leaderboard-row" + (scoreCounts[e.score] > 1 ? " tied" : "");
       li.innerHTML = `
-        <span class="rank">#${e.rank}</span>
+        <span class="rank">${e.rank}</span>
         <span class="name">${e.name}</span>
         <span class="score">${e.score}</span>
       `;
