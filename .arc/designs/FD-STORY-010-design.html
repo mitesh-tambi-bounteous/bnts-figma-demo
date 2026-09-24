@@ -446,6 +446,91 @@
     box-shadow: none;
   }
 
+  /* Round 4 feedback: "can we have sorting on the leaderboard? just asking" —
+     added an optional Player/Score sort toggle on the header row. Rank badges
+     stay tied to the fixed score standing (per AC3's tie/adjacent-rank rule)
+     regardless of which column the rows are currently ordered by; the default
+     view is still Score, descending, satisfying AC3 unchanged. */
+  .leaderboard-header {
+    display: grid;
+    grid-template-columns: 2.5em 1fr auto;
+    align-items: center;
+    gap: var(--space-2);
+    padding-inline: var(--space-2);
+    padding-block: var(--space-1);
+    margin-bottom: var(--space-1);
+    border-bottom: var(--border-width-default) solid var(--color-border);
+  }
+
+  .leaderboard-header__label {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .sort-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-1);
+    min-height: 44px;
+    background: none;
+    border: none;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-block: var(--space-2);
+    padding-inline: var(--space-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+
+  .sort-btn--end {
+    justify-content: flex-end;
+  }
+
+  .sort-btn:hover {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  .sort-btn:focus-visible {
+    outline: var(--border-width-default) solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .sort-btn[aria-sort="ascending"],
+  .sort-btn[aria-sort="descending"] {
+    opacity: 1;
+    color: var(--color-primary);
+  }
+
+  .sort-icon {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    opacity: 0;
+  }
+
+  .sort-btn[aria-sort="ascending"] .sort-icon {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+
+  .sort-btn[aria-sort="descending"] .sort-icon {
+    opacity: 1;
+  }
+
   .leaderboard-list {
     list-style: none;
     margin: 0;
@@ -631,6 +716,15 @@
 
       <div class="card">
         <h2 class="card-title">Top 10 leaderboard</h2>
+        <div class="leaderboard-header" id="leaderboard-loaded-list-header">
+          <span class="leaderboard-header__label">Rank</span>
+          <button type="button" class="sort-btn" data-field="name" aria-sort="none" onclick="toggleSort('leaderboard-loaded-list', 'name', loadedFixture)">
+            Player<span class="sort-icon" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="sort-btn sort-btn--end" data-field="score" aria-sort="descending" onclick="toggleSort('leaderboard-loaded-list', 'score', loadedFixture)">
+            Score<span class="sort-icon" aria-hidden="true"></span>
+          </button>
+        </div>
         <ol class="leaderboard-list" id="leaderboard-loaded-list"></ol>
       </div>
     </div>
@@ -653,6 +747,15 @@
 
       <div class="card">
         <h2 class="card-title">Top 10 leaderboard</h2>
+        <div class="leaderboard-header" id="leaderboard-partial-list-header">
+          <span class="leaderboard-header__label">Rank</span>
+          <button type="button" class="sort-btn" data-field="name" aria-sort="none" onclick="toggleSort('leaderboard-partial-list', 'name', partialFixture)">
+            Player<span class="sort-icon" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="sort-btn sort-btn--end" data-field="score" aria-sort="descending" onclick="toggleSort('leaderboard-partial-list', 'score', partialFixture)">
+            Score<span class="sort-icon" aria-hidden="true"></span>
+          </button>
+        </div>
         <ol class="leaderboard-list" id="leaderboard-partial-list"></ol>
         <p class="leaderboard-empty-note">Only 6 scores have been submitted so far — no placeholder rows shown.</p>
       </div>
@@ -737,10 +840,11 @@
       { name: 'Omar',   score: 850 }
     ];
 
-    function renderLeaderboard(listEl, fixture) {
+    // Round 4: rank is always derived from the fixed score standing (AC3's
+    // tie/adjacent-rank rule); the sort toggle only changes row display order.
+    function computeRanked(fixture) {
       var sorted = fixture.slice().sort(function (a, b) { return b.score - a.score; });
       var top10 = sorted.slice(0, 10);
-      listEl.innerHTML = '';
       var rank = 1;
       var prevScore = null;
       top10.forEach(function (entry, i) {
@@ -749,19 +853,63 @@
         } else {
           rank = i + 1;
         }
+        entry.rank = rank;
         prevScore = entry.score;
+      });
+      return top10;
+    }
+
+    var sortState = {}; // keyed by list element id -> { field: 'score'|'name', dir: 'asc'|'desc' }
+
+    function renderLeaderboard(listId, fixture) {
+      var state = sortState[listId] || { field: 'score', dir: 'desc' };
+      sortState[listId] = state;
+
+      var ranked = computeRanked(fixture);
+      var display = ranked.slice().sort(function (a, b) {
+        if (state.field === 'name') {
+          var cmp = a.name.localeCompare(b.name);
+          return state.dir === 'asc' ? cmp : -cmp;
+        }
+        var cmp2 = a.score - b.score;
+        return state.dir === 'asc' ? cmp2 : -cmp2;
+      });
+
+      var listEl = document.getElementById(listId);
+      listEl.innerHTML = '';
+      display.forEach(function (entry) {
         var li = document.createElement('li');
-        li.className = 'leaderboard-row' + (rank === 1 ? ' leaderboard-row--top' : '');
+        li.className = 'leaderboard-row' + (entry.rank === 1 ? ' leaderboard-row--top' : '');
         li.innerHTML =
-          '<span class="leaderboard-rank">#' + rank + '</span>' +
+          '<span class="leaderboard-rank">#' + entry.rank + '</span>' +
           '<span class="leaderboard-name">' + entry.name + '</span>' +
           '<span class="leaderboard-score">' + entry.score + '</span>';
         listEl.appendChild(li);
       });
+
+      var header = document.getElementById(listId + '-header');
+      if (header) {
+        header.querySelectorAll('.sort-btn').forEach(function (btn) {
+          var field = btn.getAttribute('data-field');
+          btn.setAttribute('aria-sort', field === state.field ? (state.dir === 'asc' ? 'ascending' : 'descending') : 'none');
+        });
+      }
     }
 
-    renderLeaderboard(document.getElementById('leaderboard-loaded-list'), loadedFixture);
-    renderLeaderboard(document.getElementById('leaderboard-partial-list'), partialFixture);
+    function toggleSort(listId, field, fixture) {
+      var state = sortState[listId] || { field: 'score', dir: 'desc' };
+      if (state.field === field) {
+        state.dir = state.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        state.field = field;
+        state.dir = field === 'name' ? 'asc' : 'desc';
+      }
+      sortState[listId] = state;
+      renderLeaderboard(listId, fixture);
+    }
+
+    renderLeaderboard('leaderboard-loaded-list', loadedFixture);
+    renderLeaderboard('leaderboard-partial-list', partialFixture);
 
     // ---------- Reviewer bar navigation ----------
     var states = ['stage-loaded', 'stage-partial', 'stage-error', 'stage-playing'];
