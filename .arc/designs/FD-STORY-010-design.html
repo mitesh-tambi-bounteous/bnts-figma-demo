@@ -357,24 +357,85 @@
     min-height: 320px;
   }
 
-  .btn-lg {
+  /* Round 2 feedback: "make start new game as fancy, no text inside it..
+     shape should itself describe that you want to start a game" —
+     replaced the pill-shaped text button with an icon-only circular
+     "play" button; the triangle shape itself communicates "start". */
+  .btn-start {
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0;
+    width: 88px;
+    height: 88px;
     min-height: 44px;
-    min-width: 200px;
-    font-size: var(--font-size-md);
-    border-radius: var(--radius-lg);
-    letter-spacing: 0.01em;
+    min-width: 44px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 32% 28%, color-mix(in srgb, var(--button-primary-background) 70%, var(--color-bg) 30%), var(--button-primary-background));
+    border-color: var(--button-primary-background);
+    box-shadow:
+      0 10px 26px 0 color-mix(in srgb, var(--color-primary) 45%, transparent),
+      inset 0 0 0 3px color-mix(in srgb, var(--button-primary-foreground) 25%, transparent);
     transition: transform 150ms ease-out, box-shadow 150ms ease-out;
-    box-shadow: 0 6px 18px 0 color-mix(in srgb, var(--color-primary) 38%, transparent);
+  }
+
+  .btn-start::before {
+    content: "";
+    width: 0;
+    height: 0;
+    /* CSS-drawn play triangle — the shape itself signals "start" with no label needed */
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 24px solid var(--button-primary-foreground);
+    margin-left: var(--space-1);
+  }
+
+  .btn-start::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: var(--border-width-default) solid color-mix(in srgb, var(--color-primary) 40%, transparent);
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .btn-lg:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px 0 color-mix(in srgb, var(--color-primary) 48%, transparent);
+    .btn-start {
+      animation: start-pulse 2400ms ease-out infinite;
     }
 
-    .btn-lg:active {
-      transform: translateY(0);
+    .btn-start:hover {
+      transform: scale(1.06);
+      box-shadow:
+        0 14px 32px 0 color-mix(in srgb, var(--color-primary) 55%, transparent),
+        inset 0 0 0 3px color-mix(in srgb, var(--button-primary-foreground) 30%, transparent);
+    }
+
+    .btn-start:active {
+      transform: scale(0.98);
+    }
+  }
+
+  @keyframes start-pulse {
+    0% {
+      box-shadow:
+        0 10px 26px 0 color-mix(in srgb, var(--color-primary) 45%, transparent),
+        inset 0 0 0 3px color-mix(in srgb, var(--button-primary-foreground) 25%, transparent),
+        0 0 0 0 color-mix(in srgb, var(--color-primary) 35%, transparent);
+    }
+    70% {
+      box-shadow:
+        0 10px 26px 0 color-mix(in srgb, var(--color-primary) 45%, transparent),
+        inset 0 0 0 3px color-mix(in srgb, var(--button-primary-foreground) 25%, transparent),
+        0 0 0 16px color-mix(in srgb, var(--color-primary) 0%, transparent);
+    }
+    100% {
+      box-shadow:
+        0 10px 26px 0 color-mix(in srgb, var(--color-primary) 45%, transparent),
+        inset 0 0 0 3px color-mix(in srgb, var(--button-primary-foreground) 25%, transparent),
+        0 0 0 0 color-mix(in srgb, var(--color-primary) 0%, transparent);
     }
   }
 
@@ -565,7 +626,7 @@
         <h1 class="title">Snake</h1>
         <p class="subtitle">Classic arcade action</p>
         <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
-        <button class="btn btn-primary btn-lg" onclick="startGame()">Start new game</button>
+        <button class="btn btn-primary btn-start" onclick="startGame()" aria-label="Start new game" title="Start new game"></button>
       </div>
 
       <div class="card">
@@ -587,7 +648,7 @@
         <h1 class="title">Snake</h1>
         <p class="subtitle">Classic arcade action</p>
         <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
-        <button class="btn btn-primary btn-lg" onclick="startGame()">Start new game</button>
+        <button class="btn btn-primary btn-start" onclick="startGame()" aria-label="Start new game" title="Start new game"></button>
       </div>
 
       <div class="card">
@@ -612,7 +673,7 @@
         <h1 class="title">Snake</h1>
         <p class="subtitle">Classic arcade action</p>
         <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
-        <button class="btn btn-primary btn-lg" onclick="startGame()">Start new game</button>
+        <button class="btn btn-primary btn-start" onclick="startGame()" aria-label="Start new game" title="Start new game"></button>
       </div>
 
       <div class="card">
