@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="arc-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FD-STORY-010 — Start screen with leaderboard</title>
+<style>
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #1a1a1a; /** Primary body text color on light backgrounds. */
+  --color-bg: #ffffff; /** Default page/surface background color. */
+  --color-primary: #2563eb; /** Brand accent color used for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color placed on top of color-primary surfaces. */
+  --color-border: #d1d5db; /** Default border color for cards, inputs, and dividers. */
+  --color-surface: #f9fafb; /** Slightly raised surface color, e.g. cards on top of the page background. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Base spacing step, used for default gaps. */
+  --space-3: 16px; /** Medium spacing step, used for component padding. */
+  --space-4: 24px; /** Large spacing step, used for section-level spacing. */
+  --radius-sm: 4px; /** Corner radius for small controls like chips. */
+  --radius-md: 8px; /** Corner radius for standard controls like buttons and inputs. */
+  --radius-lg: 16px; /** Corner radius for larger surfaces like cards. */
+  --font-size-sm: 12px; /** Small text size, used for captions and chips. */
+  --font-size-md: 16px; /** Default body text size. */
+  --font-size-lg: 24px; /** Heading text size. */
+  --font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif; /** Default typeface stack for all UI text. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --border-width-default: 1px; /** Default border thickness for cards, inputs, and dividers. */
+  --shadow-card: 0px 2px 8px 0px rgb(0% 0% 0% / 0.08); /** Soft elevation shadow used under cards. */
+  --button-primary-background: var(--color-primary); /** Background color for the primary button variant. */
+  --button-primary-foreground: var(--color-primary-fg); /** Text color for the primary button variant. */
+  --button-primary-radius: var(--radius-md); /** Corner radius for the primary button variant. */
+  --button-primary-padding-block: var(--space-2); /** Vertical padding for the primary button variant. */
+  --button-primary-padding-inline: var(--space-3); /** Horizontal padding for the primary button variant. */
+  --button-secondary-background: var(--color-bg); /** Background color for the secondary button variant. */
+  --button-secondary-foreground: var(--color-fg); /** Text color for the secondary button variant. */
+  --button-secondary-border: var(--color-border); /** Border color for the secondary button variant. */
+  --card-default-background: var(--color-surface); /** Background color for the default card variant. */
+  --card-default-border: var(--color-border); /** Border color for the default card variant. */
+  --card-default-radius: var(--radius-lg); /** Corner radius for the default card variant. */
+  --card-default-padding: var(--space-4); /** Inner padding for the default card variant. */
+}
+
+</style>
+<style>
+/* Prototype utility & component classes built entirely from design tokens. */
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-md {
+  font-size: var(--font-size-md);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-body {
+  font-family: var(--font-family-base);
+  color: var(--color-fg);
+  font-weight: var(--font-weight-regular);
+}
+
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+
+.surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  border-width: var(--border-width-default);
+  border-style: solid;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+  border-color: var(--button-primary-background);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-color: var(--button-secondary-border);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+}
+
+/* Card */
+
+.card {
+  background-color: var(--card-default-background);
+  border: var(--border-width-default) solid var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--card-default-padding);
+  box-shadow: var(--shadow-card);
+}
+
+.card-title {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fg);
+  margin: 0;
+}
+
+/* Chip */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+}
+
+.chip-outline {
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+}
+
+/* Form controls */
+
+.input {
+  display: block;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+}
+
+.input:focus {
+  outline: var(--border-width-default) solid var(--color-primary);
+  outline-offset: var(--space-1);
+  border-color: var(--color-primary);
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin-bottom: var(--space-1);
+}
+
+</style>
+<style>
+  /*
+    FD-STORY-010: Start screen with leaderboard
+    Revision 2 — product-owner feedback "make it more modern" applied.
+    Modernization pass: soft gradient backdrop, gradient headline treatment,
+    lifted/hoverable cards, refined button motion & elevation. All values
+    are still composed from design-system tokens only (color-mix + tokens,
+    no hardcoded colors/fonts).
+  */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg);
+    background-image:
+      radial-gradient(circle at 12% -10%, color-mix(in srgb, var(--color-primary) 14%, transparent) 0%, transparent 55%),
+      radial-gradient(circle at 100% 110%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: var(--color-fg);
+    margin: 0;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Reviewer bar (always present) ---------- */
+  .reviewer-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-4);
+    background-color: color-mix(in srgb, var(--color-bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--border-width-default) solid var(--color-border);
+  }
+
+  .reviewer-bar__label {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg);
+  }
+
+  .reviewer-bar__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .reviewer-bar__controls .btn {
+    min-height: 36px;
+    padding-block: var(--space-1);
+  }
+
+  /* ---------- App nav ---------- */
+  /* This is a single-screen project (not an ARC-* story), so no arc sidebar.
+     A minimal top nav with the game's identity is shown instead of the ARC shell. */
+  .app-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+    padding-inline: var(--space-4);
+  }
+
+  .app-nav__logo {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 55%, var(--color-fg)));
+  }
+
+  .app-nav__name {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* ---------- Stage ---------- */
+  .stage {
+    display: none;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-inline: var(--space-4);
+    padding-bottom: var(--space-4);
+  }
+
+  .stage.is-active {
+    display: block;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  @media (max-width: 720px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    backdrop-filter: blur(6px);
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px 0 color-mix(in srgb, var(--color-fg) 14%, transparent);
+    }
+  }
+
+  .title {
+    font-size: calc(var(--font-size-lg) * 1.3);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-2) 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-fg), var(--color-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .subtitle {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    opacity: 0.7;
+    text-align: center;
+    margin: 0 0 var(--space-4) 0;
+    letter-spacing: 0.02em;
+  }
+
+  .instructions {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .start-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  .btn-lg {
+    min-height: 44px;
+    min-width: 200px;
+    font-size: var(--font-size-md);
+    border-radius: var(--radius-lg);
+    letter-spacing: 0.01em;
+    transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+    box-shadow: 0 6px 18px 0 color-mix(in srgb, var(--color-primary) 38%, transparent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-lg:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px 0 color-mix(in srgb, var(--color-primary) 48%, transparent);
+    }
+
+    .btn-lg:active {
+      transform: translateY(0);
+    }
+  }
+
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+    box-shadow: none;
+  }
+
+  .leaderboard-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .leaderboard-row {
+    display: grid;
+    grid-template-columns: 2.5em 1fr auto;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-2);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-md);
+    transition: background-color 150ms ease-out;
+  }
+
+  .leaderboard-row:hover {
+    background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  }
+
+  .leaderboard-row--top {
+    background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  .leaderboard-rank {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  .leaderboard-name {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .leaderboard-score {
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .leaderboard-empty-note {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    opacity: 0.65;
+    text-align: center;
+    padding-block: var(--space-3);
+  }
+
+  /* ---------- Error state ---------- */
+  .error-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-bg));
+    border: var(--border-width-default) solid color-mix(in srgb, var(--color-fg) 20%, var(--color-border));
+  }
+
+  .error-banner__icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .error-banner__body {
+    flex: 1;
+  }
+
+  .error-banner__title {
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--space-1) 0;
+  }
+
+  .error-banner__message {
+    margin: 0 0 var(--space-3) 0;
+    font-size: var(--font-size-md);
+  }
+
+  .loading-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+    justify-content: center;
+    font-size: var(--font-size-md);
+    opacity: 0.75;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+    border-top-color: var(--color-primary);
+    animation: spin 800ms linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ---------- Playing (simulated gameplay) state ---------- */
+  .game-shell {
+    max-width: 640px;
+    margin: var(--space-4) auto 0 auto;
+    text-align: center;
+  }
+
+  .game-canvas-mock {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 18%, var(--color-bg)), color-mix(in srgb, var(--color-primary) 6%, var(--color-bg)));
+    border: var(--border-width-default) solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .game-canvas-mock__label {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    opacity: 0.85;
+  }
+
+  .fixture-note {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    opacity: 0.6;
+    text-align: center;
+    margin-top: var(--space-3);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Reviewer bar: canonical prev/next + current screen/state label -->
+  <div class="reviewer-bar">
+    <div class="reviewer-bar__label" id="reviewer-label">Screen 1 of 4 — Start screen: leaderboard loaded (ties + &gt;10 scores)</div>
+    <div class="reviewer-bar__controls">
+      <button class="btn btn-secondary" id="prev-btn" onclick="goToState(-1)">&larr; Prev</button>
+      <button class="btn btn-secondary" id="next-btn" onclick="goToState(1)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- App nav: minimal identity bar for this single-screen game (not an ARC-* story) -->
+  <div class="app-nav">
+    <div class="app-nav__logo" aria-hidden="true"></div>
+    <div class="app-nav__name">Snake</div>
+  </div>
+
+  <!-- ============================================================
+       Screen: Start screen — leaderboard loaded successfully
+       Fixture: 12 submitted scores, top 10 shown, includes a tie
+       (850 / 850) resolved by submission order.
+       Satisfies AC1 (instructions text), AC2 (start control),
+       AC3 (sorted desc, ties adjacent in submission order),
+       AC4 (only top 10 of >10 submissions shown), AC9 (start begins
+       gameplay immediately).
+       State: leaderboard-loaded
+  ============================================================ -->
+  <main class="stage is-active" id="stage-loaded" data-state="loaded">
+    <div class="layout">
+      <div class="card start-panel">
+        <h1 class="title">Snake</h1>
+        <p class="subtitle">Classic arcade action</p>
+        <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+        <button class="btn btn-primary btn-lg" onclick="startGame()">Start new game</button>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Top 10 leaderboard</h2>
+        <ol class="leaderboard-list" id="leaderboard-loaded-list"></ol>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       Screen: Start screen — leaderboard loaded, fewer than 10 entries
+       Fixture: 6 submitted scores. No placeholder rows added.
+       Satisfies AC5.
+       State: leaderboard-partial
+  ============================================================ -->
+  <main class="stage" id="stage-partial" data-state="partial">
+    <div class="layout">
+      <div class="card start-panel">
+        <h1 class="title">Snake</h1>
+        <p class="subtitle">Classic arcade action</p>
+        <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+        <button class="btn btn-primary btn-lg" onclick="startGame()">Start new game</button>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Top 10 leaderboard</h2>
+        <ol class="leaderboard-list" id="leaderboard-partial-list"></ol>
+        <p class="leaderboard-empty-note">Only 6 scores have been submitted so far — no placeholder rows shown.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       Screen: Start screen — leaderboard fetch failed
+       Satisfies AC6 (inline error + retry), AC7 (role="alert" live
+       region), AC8 (start control still available without leaderboard).
+       Retry is simulated via setTimeout: shows a brief loading row,
+       then resolves to the "loaded" leaderboard fixture.
+       State: leaderboard-error
+  ============================================================ -->
+  <main class="stage" id="stage-error" data-state="error">
+    <div class="layout">
+      <div class="card start-panel">
+        <h1 class="title">Snake</h1>
+        <p class="subtitle">Classic arcade action</p>
+        <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+        <button class="btn btn-primary btn-lg" onclick="startGame()">Start new game</button>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Top 10 leaderboard</h2>
+        <div id="error-banner-wrap" role="alert">
+          <div class="error-banner">
+            <span class="error-banner__icon" aria-hidden="true">!</span>
+            <div class="error-banner__body">
+              <p class="error-banner__title">Couldn't load the leaderboard</p>
+              <p class="error-banner__message">Something went wrong fetching the top scores. You can still start a new game.</p>
+              <button class="btn btn-secondary" id="retry-btn" onclick="retryLeaderboard()">Retry</button>
+            </div>
+          </div>
+        </div>
+        <div class="loading-row" id="error-loading-row" style="display: none;">
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Retrying&hellip;</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       Screen: Gameplay begins immediately after Start is activated
+       Satisfies AC9. Gameplay implementation itself is out of scope
+       for this prototype; this represents the hand-off moment.
+       State: playing
+  ============================================================ -->
+  <main class="stage" id="stage-playing" data-state="playing">
+    <div class="game-shell">
+      <div class="game-canvas-mock">
+        <span class="game-canvas-mock__label">Gameplay running&hellip;</span>
+      </div>
+      <p class="fixture-note">Start was activated — gameplay began immediately, without waiting on the leaderboard. Game rendering itself is covered by a separate story.</p>
+    </div>
+  </main>
+
+  <script>
+    // Inline fixture data — no live API calls in this prototype.
+    var loadedFixture = [
+      { name: 'Priya',   score: 1420 },
+      { name: 'Marcus',  score: 1310 },
+      { name: 'Aiko',    score: 1180 },
+      { name: 'Devon',   score: 990 },
+      { name: 'Lena',    score: 970 },
+      { name: 'Omar',    score: 850 },
+      { name: 'Yusuf',   score: 850 }, // tie with Omar, submitted after -> shares adjacent rank
+      { name: 'Grace',   score: 800 },
+      { name: 'Theo',    score: 640 },
+      { name: 'Nadia',   score: 510 },
+      { name: 'Ivy',     score: 420 }, // beyond top 10, excluded
+      { name: 'Sam',     score: 300 }  // beyond top 10, excluded
+    ];
+
+    var partialFixture = [
+      { name: 'Priya',  score: 1420 },
+      { name: 'Marcus', score: 1310 },
+      { name: 'Aiko',   score: 1180 },
+      { name: 'Devon',  score: 990 },
+      { name: 'Lena',   score: 970 },
+      { name: 'Omar',   score: 850 }
+    ];
+
+    function renderLeaderboard(listEl, fixture) {
+      var sorted = fixture.slice().sort(function (a, b) { return b.score - a.score; });
+      var top10 = sorted.slice(0, 10);
+      listEl.innerHTML = '';
+      var rank = 1;
+      var prevScore = null;
+      top10.forEach(function (entry, i) {
+        if (prevScore !== null && entry.score === prevScore) {
+          // tied score shares the adjacent rank, not renumbered
+        } else {
+          rank = i + 1;
+        }
+        prevScore = entry.score;
+        var li = document.createElement('li');
+        li.className = 'leaderboard-row' + (rank === 1 ? ' leaderboard-row--top' : '');
+        li.innerHTML =
+          '<span class="leaderboard-rank">#' + rank + '</span>' +
+          '<span class="leaderboard-name">' + entry.name + '</span>' +
+          '<span class="leaderboard-score">' + entry.score + '</span>';
+        listEl.appendChild(li);
+      });
+    }
+
+    renderLeaderboard(document.getElementById('leaderboard-loaded-list'), loadedFixture);
+    renderLeaderboard(document.getElementById('leaderboard-partial-list'), partialFixture);
+
+    // ---------- Reviewer bar navigation ----------
+    var states = ['stage-loaded', 'stage-partial', 'stage-error', 'stage-playing'];
+    var labels = [
+      'Screen 1 of 4 — Start screen: leaderboard loaded (ties + &gt;10 scores)',
+      'Screen 2 of 4 — Start screen: leaderboard loaded (&lt;10 scores, no placeholders)',
+      'Screen 3 of 4 — Start screen: leaderboard fetch failed (inline error + retry)',
+      'Screen 4 of 4 — Gameplay begins immediately on Start'
+    ];
+    var current = 0;
+
+    function showState(index) {
+      current = (index + states.length) % states.length;
+      states.forEach(function (id, i) {
+        document.getElementById(id).classList.toggle('is-active', i === current);
+      });
+      document.getElementById('reviewer-label').innerHTML = labels[current];
+    }
+
+    function goToState(delta) {
+      showState(current + delta);
+    }
+
+    function startGame() {
+      showState(states.indexOf('stage-playing'));
+    }
+
+    function retryLeaderboard() {
+      var wrap = document.getElementById('error-banner-wrap');
+      var loadingRow = document.getElementById('error-loading-row');
+      wrap.style.display = 'none';
+      loadingRow.style.display = 'flex';
+      setTimeout(function () {
+        // Simulated successful retry: hand back to the loaded leaderboard state.
+        loadingRow.style.display = 'none';
+        wrap.style.display = 'block';
+        showState(states.indexOf('stage-loaded'));
+      }, 900);
+    }
+  </script>
+</body>
+</html>
+
+<!-- arc:css-inlined -->
