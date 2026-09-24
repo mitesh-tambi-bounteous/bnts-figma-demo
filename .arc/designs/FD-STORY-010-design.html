@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="arc-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FD-STORY-010 — Start screen with leaderboard</title>
+<style>
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #1a1a1a; /** Primary body text color on light backgrounds. */
+  --color-bg: #ffffff; /** Default page/surface background color. */
+  --color-primary: #2563eb; /** Brand accent color used for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color placed on top of color-primary surfaces. */
+  --color-border: #d1d5db; /** Default border color for cards, inputs, and dividers. */
+  --color-surface: #f9fafb; /** Slightly raised surface color, e.g. cards on top of the page background. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Base spacing step, used for default gaps. */
+  --space-3: 16px; /** Medium spacing step, used for component padding. */
+  --space-4: 24px; /** Large spacing step, used for section-level spacing. */
+  --radius-sm: 4px; /** Corner radius for small controls like chips. */
+  --radius-md: 8px; /** Corner radius for standard controls like buttons and inputs. */
+  --radius-lg: 16px; /** Corner radius for larger surfaces like cards. */
+  --font-size-sm: 12px; /** Small text size, used for captions and chips. */
+  --font-size-md: 16px; /** Default body text size. */
+  --font-size-lg: 24px; /** Heading text size. */
+  --font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif; /** Default typeface stack for all UI text. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --border-width-default: 1px; /** Default border thickness for cards, inputs, and dividers. */
+  --shadow-card: 0px 2px 8px 0px rgb(0% 0% 0% / 0.08); /** Soft elevation shadow used under cards. */
+  --button-primary-background: var(--color-primary); /** Background color for the primary button variant. */
+  --button-primary-foreground: var(--color-primary-fg); /** Text color for the primary button variant. */
+  --button-primary-radius: var(--radius-md); /** Corner radius for the primary button variant. */
+  --button-primary-padding-block: var(--space-2); /** Vertical padding for the primary button variant. */
+  --button-primary-padding-inline: var(--space-3); /** Horizontal padding for the primary button variant. */
+  --button-secondary-background: var(--color-bg); /** Background color for the secondary button variant. */
+  --button-secondary-foreground: var(--color-fg); /** Text color for the secondary button variant. */
+  --button-secondary-border: var(--color-border); /** Border color for the secondary button variant. */
+  --card-default-background: var(--color-surface); /** Background color for the default card variant. */
+  --card-default-border: var(--color-border); /** Border color for the default card variant. */
+  --card-default-radius: var(--radius-lg); /** Corner radius for the default card variant. */
+  --card-default-padding: var(--space-4); /** Inner padding for the default card variant. */
+}
+
+</style>
+<style>
+/* Prototype utility & component classes built entirely from design tokens. */
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-md {
+  font-size: var(--font-size-md);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.text-body {
+  font-family: var(--font-family-base);
+  color: var(--color-fg);
+  font-weight: var(--font-weight-regular);
+}
+
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+
+.surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  border-width: var(--border-width-default);
+  border-style: solid;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+  border-color: var(--button-primary-background);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-color: var(--button-secondary-border);
+  border-radius: var(--button-primary-radius);
+  padding-block: var(--button-primary-padding-block);
+  padding-inline: var(--button-primary-padding-inline);
+}
+
+/* Card */
+
+.card {
+  background-color: var(--card-default-background);
+  border: var(--border-width-default) solid var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--card-default-padding);
+  box-shadow: var(--shadow-card);
+}
+
+.card-title {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-fg);
+  margin: 0;
+}
+
+/* Chip */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-fg);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+}
+
+.chip-outline {
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+}
+
+/* Form controls */
+
+.input {
+  display: block;
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border: var(--border-width-default) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+}
+
+.input:focus {
+  outline: var(--border-width-default) solid var(--color-primary);
+  outline-offset: var(--space-1);
+  border-color: var(--color-primary);
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin-bottom: var(--space-1);
+}
+
+</style>
+
+<!--
+  App nav: none — a single full-screen game canvas app has no sidebar/top-bar
+  navigation to speak of. The start screen IS the landing page.
+
+  DESIGN SYSTEM GAP: tokens.json / prototype-utils.css define no "danger" /
+  "error" semantic color (only color-fg, color-bg, color-primary, color-border,
+  color-surface). The error state below is therefore built from color-fg +
+  color-border + a bold label + a "⚠" glyph (never color alone, per guideline
+  §3) rather than a red hardcoded hex. If this pattern recurs, the design
+  system should add an `color-danger` / `chip-danger` token pair.
+-->
+
+<style>
+  body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    margin: 0;
+    min-height: 100dvh;
+  }
+
+  .stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: var(--space-4) var(--space-3);
+    box-sizing: border-box;
+  }
+
+  .start-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 420px;
+    width: 100%;
+  }
+
+  @media (min-width: 720px) {
+    .start-layout {
+      flex-direction: row;
+      align-items: flex-start;
+      max-width: 760px;
+    }
+    .start-layout > .card {
+      flex: 1;
+    }
+  }
+
+  .title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--space-2) 0;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-fg);
+    opacity: 0.7;
+    text-align: center;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .instructions {
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    max-width: 60ch;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-lg {
+    min-height: 44px;
+    min-width: 200px;
+    font-size: var(--font-size-md);
+  }
+
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .leaderboard-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .leaderboard-row {
+    display: grid;
+    grid-template-columns: 2.5em 1fr auto;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-1);
+    padding-inline: var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
+  }
+
+  .leaderboard-row.tied {
+    background-color: var(--color-surface);
+  }
+
+  .rank {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  .score {
+    font-weight: var(--font-weight-bold);
+    text-align: right;
+  }
+
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .skeleton-row {
+    height: 1.6em;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-bg) 37%, var(--color-surface) 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton-row { animation: none; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+  }
+
+  .empty-state {
+    font-size: var(--font-size-sm);
+    opacity: 0.75;
+    text-align: center;
+    padding-block: var(--space-3);
+  }
+
+  .error-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border: var(--border-width-default) solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+
+  .error-box strong {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .error-icon {
+    margin-right: var(--space-1);
+  }
+
+  .retry-row {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cell-name-skel {
+    height: 1em;
+    width: 60%;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+  }
+
+  .flash-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .flash-icon {
+    font-size: 48px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Reviewer bar -->
+<div id="review-bar" style="position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;gap:10px;padding:8px 16px;
+  background:var(--color-surface);border-bottom:1px solid var(--color-border);font-size:13px;font-family:var(--font-family-base)">
+  <span style="font-family:monospace;color:var(--color-fg);opacity:.6">FD-STORY-010</span>
+  <button id="prev-btn" style="background:none;border:none;color:var(--color-primary);cursor:pointer;font-weight:var(--font-weight-bold)">← Prev</button>
+  <span id="screen-label" style="flex:1;text-align:center;font-weight:var(--font-weight-bold);color:var(--color-fg)"></span>
+  <button id="next-btn" style="background:none;border:none;color:var(--color-primary);cursor:pointer;font-weight:var(--font-weight-bold)">Next →</button>
+</div>
+<div style="height:46px"></div><!-- spacer -->
+
+<div id="screens">
+
+  <!-- State: success -->
+  <!--
+    Screen: Start Screen — Leaderboard loaded successfully
+    Notes:
+      - Satisfies AC1 (instructions text), AC2 (Start control), AC9 (Start begins
+        gameplay immediately, simulated via a full-screen "Gameplay starting…"
+        transition below).
+      - Leaderboard: satisfies AC3 (sorted desc, ties share adjacent rank numbers
+        in original submission order — see rows ranked "4" appearing twice for
+        tied scores of 480) and AC4 (fixture has 12 scores; only top 10 shown).
+      - Score list is inline JSON fixture rendered at "page load" via setTimeout,
+        no network calls.
+  -->
+  <div class="screen" data-name="Start — Leaderboard loaded">
+    <div class="stage">
+      <div class="start-layout">
+        <div class="card">
+          <h1 class="title">🐍 Snake</h1>
+          <p class="subtitle">Classic arcade, reimagined</p>
+          <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary btn-lg" onclick="startGame('success')">Start game</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Top 10 leaderboard</h2>
+          <ul class="leaderboard-list" id="leaderboard-success"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State: loading -->
+  <!--
+    Screen: Start Screen — Leaderboard loading
+    Notes:
+      - Shows the instant-available state (instructions + Start control render
+        immediately, AC1/AC2/AC9) while the leaderboard card shows skeleton rows
+        (guideline §5, §4: skeleton for content > 300ms, no layout shift).
+      - Start control is enabled here too — the player is never blocked by the
+        leaderboard fetch.
+  -->
+  <div class="screen" data-name="Start — Leaderboard loading">
+    <div class="stage">
+      <div class="start-layout">
+        <div class="card">
+          <h1 class="title">🐍 Snake</h1>
+          <p class="subtitle">Classic arcade, reimagined</p>
+          <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary btn-lg" onclick="startGame('loading')">Start game</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Top 10 leaderboard</h2>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)" aria-busy="true" aria-label="Loading leaderboard">
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State: error -->
+  <!--
+    Screen: Start Screen — Leaderboard fetch failed
+    Notes:
+      - Satisfies AC6 (inline error + retry control), AC7 (role="alert" region
+        announces the error to assistive tech), AC8 (Start control stays enabled
+        and functional even though the leaderboard never loaded).
+      - No color-only signalling: error uses a "⚠" icon + bold "Couldn't load
+        leaderboard" label + border, per guideline §3 (and the tokens.json gap
+        noted above — no danger color exists to encode this with color either).
+      - "Retry" re-runs the same simulated fetch; clicking it jumps to the
+        Loading screen's visual treatment inline within this same screen node.
+  -->
+  <div class="screen" data-name="Start — Leaderboard error">
+    <div class="stage">
+      <div class="start-layout">
+        <div class="card">
+          <h1 class="title">🐍 Snake</h1>
+          <p class="subtitle">Classic arcade, reimagined</p>
+          <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary btn-lg" onclick="startGame('error')">Start game</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Top 10 leaderboard</h2>
+          <div id="leaderboard-error-region" role="alert" class="error-box">
+            <span><span class="error-icon" aria-hidden="true">⚠</span><strong>Couldn't load leaderboard</strong></span>
+            <span class="text-body text-sm">The scores couldn't be reached. Check your connection and try again — you can still start playing without it.</span>
+            <div class="retry-row">
+              <button class="btn btn-secondary" id="retry-btn" onclick="retryLeaderboard()">Retry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State: empty -->
+  <!--
+    Screen: Start Screen — Fewer than 10 scores submitted
+    Notes:
+      - Satisfies AC5: only the 3 existing fixture entries render, no
+        placeholder/empty rows are added to pad the list to 10.
+  -->
+  <div class="screen" data-name="Start — Leaderboard partial (< 10 scores)">
+    <div class="stage">
+      <div class="start-layout">
+        <div class="card">
+          <h1 class="title">🐍 Snake</h1>
+          <p class="subtitle">Classic arcade, reimagined</p>
+          <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary btn-lg" onclick="startGame('partial')">Start game</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Top 10 leaderboard</h2>
+          <ul class="leaderboard-list" id="leaderboard-partial"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State: no scores yet -->
+  <!--
+    Screen: Start Screen — No scores submitted yet
+    Notes:
+      - Empty state per guideline §5: an invitation to act, not a dead end.
+  -->
+  <div class="screen" data-name="Start — Leaderboard empty">
+    <div class="stage">
+      <div class="start-layout">
+        <div class="card">
+          <h1 class="title">🐍 Snake</h1>
+          <p class="subtitle">Classic arcade, reimagined</p>
+          <p class="instructions">Use arrow keys to move the snake, eat food to grow, and avoid hitting walls or yourself.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary btn-lg" onclick="startGame('empty')">Start game</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Top 10 leaderboard</h2>
+          <p class="empty-state">No scores yet — be the first to make the leaderboard!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State: game-starting -->
+  <!--
+    Screen: Gameplay transition
+    Notes:
+      - Satisfies AC9: activating Start begins gameplay immediately. Modeled
+        here as an instant full-screen transition (simulated with a brief
+        setTimeout "starting…" flash, standing in for the real canvas mount)
+        rather than any confirmation step or delay.
+  -->
+  <div class="screen" data-name="Gameplay starting (post-Start click)">
+    <div class="stage">
+      <div class="flash-banner">
+        <div class="flash-icon" aria-hidden="true">🐍</div>
+        <p class="text-body text-lg" style="margin:0">Game starting…</p>
+        <p class="text-body text-sm" style="opacity:.7">Use arrow keys to move</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Inline fixtures — no network calls in this prototype.
+  const FIXTURE_FULL = [
+    { name: "Ari",     score: 980, submittedAt: 1 },
+    { name: "Bo",      score: 910, submittedAt: 2 },
+    { name: "Cleo",    score: 875, submittedAt: 3 },
+    { name: "Devon",   score: 480, submittedAt: 4 },
+    { name: "Ezra",    score: 480, submittedAt: 5 },
+    { name: "Fen",     score: 480, submittedAt: 6 },
+    { name: "Gigi",    score: 410, submittedAt: 7 },
+    { name: "Huxley",  score: 390, submittedAt: 8 },
+    { name: "Ines",    score: 355, submittedAt: 9 },
+    { name: "Jax",     score: 210, submittedAt: 10 },
+    { name: "Kit",     score: 120, submittedAt: 11 },
+    { name: "Lior",    score: 60,  submittedAt: 12 }
+  ];
+
+  const FIXTURE_PARTIAL = [
+    { name: "Ari",  score: 640, submittedAt: 1 },
+    { name: "Bo",   score: 300, submittedAt: 2 },
+    { name: "Cleo", score: 90,  submittedAt: 3 }
+  ];
+
+  // Sort desc by score, stable (ties keep submission order), then assign
+  // shared ranks to tied scores (AC3).
+  function rankLeaderboard(entries) {
+    const sorted = entries
+      .map((e, i) => ({ ...e, _i: i }))
+      .sort((a, b) => (b.score - a.score) || (a._i - b._i));
+    let rank = 0;
+    let lastScore = null;
+    return sorted.map((e, i) => {
+      if (e.score !== lastScore) {
+        rank = i + 1;
+        lastScore = e.score;
+      }
+      return { ...e, rank };
+    });
+  }
+
+  function renderLeaderboard(targetId, entries, limit) {
+    const ranked = rankLeaderboard(entries).slice(0, limit);
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    el.innerHTML = "";
+    // detect ties for the subtle tied-row background treatment
+    const scoreCounts = ranked.reduce((acc, e) => {
+      acc[e.score] = (acc[e.score] || 0) + 1;
+      return acc;
+    }, {});
+    ranked.forEach(e => {
+      const li = document.createElement("li");
+      li.className = "leaderboard-row" + (scoreCounts[e.score] > 1 ? " tied" : "");
+      li.innerHTML = `
+        <span class="rank">#${e.rank}</span>
+        <span class="name">${e.name}</span>
+        <span class="score">${e.score}</span>
+      `;
+      el.appendChild(li);
+    });
+  }
+
+  renderLeaderboard("leaderboard-success", FIXTURE_FULL, 10);
+  renderLeaderboard("leaderboard-partial", FIXTURE_PARTIAL, 10);
+
+  function retryLeaderboard() {
+    const region = document.getElementById("leaderboard-error-region");
+    region.setAttribute("aria-busy", "true");
+    region.innerHTML = `<div style="display:flex;flex-direction:column;gap:var(--space-2)">
+      <div class="skeleton-row"></div>
+      <div class="skeleton-row"></div>
+      <div class="skeleton-row"></div>
+    </div>`;
+    setTimeout(() => {
+      // Simulated retry succeeds.
+      const card = region.parentElement;
+      const ul = document.createElement("ul");
+      ul.className = "leaderboard-list";
+      ul.id = "leaderboard-success-2";
+      card.replaceChild(ul, region);
+      renderLeaderboard("leaderboard-success-2", FIXTURE_FULL, 10);
+    }, 300);
+  }
+
+  function startGame(fromState) {
+    show(screens.length - 1); // jump reviewer bar to the "Gameplay starting" screen
+  }
+
+  // Reviewer bar wiring
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  let cur = 0;
+  function show(i) {
+    cur = Math.max(0, Math.min(screens.length - 1, i));
+    screens.forEach((s, j) => s.style.display = j === cur ? 'block' : 'none');
+    document.getElementById('screen-label').textContent =
+      `${cur + 1} / ${screens.length}: ${screens[cur].dataset.name}`;
+  }
+  document.getElementById('prev-btn').onclick = () => show(cur - 1);
+  document.getElementById('next-btn').onclick = () => show(cur + 1);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') show(cur + 1);
+    if (e.key === 'ArrowLeft') show(cur - 1);
+  });
+  show(0);
+</script>
+
+</body>
+</html>
+
+<!-- arc:css-inlined -->
