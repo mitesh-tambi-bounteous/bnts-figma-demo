@@ -365,8 +365,8 @@
     -webkit-appearance: none;
     appearance: none;
     padding: 0;
-    width: 88px;
-    height: 88px;
+    width: 64px;
+    height: 64px;
     min-height: 44px;
     min-width: 44px;
     border-radius: 50%;
@@ -387,16 +387,16 @@
     width: 0;
     height: 0;
     /* CSS-drawn play triangle — the shape itself signals "start" with no label needed */
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 24px solid var(--button-primary-foreground);
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 17px solid var(--button-primary-foreground);
     margin-left: var(--space-1);
   }
 
   .btn-start::after {
     content: "";
     position: absolute;
-    inset: -8px;
+    inset: -6px;
     border-radius: 50%;
     border: var(--border-width-default) solid color-mix(in srgb, var(--color-primary) 40%, transparent);
   }
