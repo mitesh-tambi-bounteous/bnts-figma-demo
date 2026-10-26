@@ -1,0 +1,25 @@
+{
+  "name": "catalogue-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": "22"},
+  "packageManager": "pnpm@12.9.1",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "e2e": "vitest run --config vitest.e2e.config.ts",
+    "devloop": "pnpm typecheck && pnpm test"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.0",
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}
