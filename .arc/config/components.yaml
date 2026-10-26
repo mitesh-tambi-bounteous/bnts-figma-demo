@@ -3,9 +3,33 @@ components:
   comp_web_app:
     name: Web App
     kind: web_ui
+    directory: apps/web
+    stack:
+      choices:
+        styling: plain CSS with design-system tokens (tokens.css)
+        language: typescript
+        framework: react + vite
+        package_manager: pnpm
+        testing_tool_e2e: playwright
+        testing_tool_unit: vitest
+      notes: database not applicable — cart is session-only in the browser; styling
+        follows design-system/tokens.css
   comp_catalogue_api:
     name: Catalogue API
     kind: api_service
+    directory: services/catalogue-api
+    stack:
+      choices:
+        language: typescript
+        framework: hono
+        package_manager: pnpm
+        testing_tool_e2e: vitest
+        testing_tool_unit: vitest
+      notes: styling not applicable — API only; owns no data, reads from the Catalogue
+        Store; integration tests call the handlers via Vitest
   comp_catalogue_store:
     name: Catalogue Store
     kind: managed_service
+    stack:
+      choices:
+        managed_service: Amazon Aurora Serverless v2 (PostgreSQL)
