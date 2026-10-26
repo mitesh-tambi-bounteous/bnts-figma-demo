@@ -1,0 +1,11 @@
+version: 1
+components:
+  comp_web_app:
+    name: Web App
+    kind: web_ui
+  comp_catalogue_api:
+    name: Catalogue API
+    kind: api_service
+  comp_catalogue_store:
+    name: Catalogue Store
+    kind: managed_service
